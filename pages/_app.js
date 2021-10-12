@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Router from 'next/router'
 import SimpleReactLightbox from 'simple-react-lightbox'
-import { AnimatePresence } from 'framer-motion'
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config'
 
@@ -34,10 +33,8 @@ function MyApp({ Component, pageProps, router }) {
         <meta name="color-scheme" content="dark light" />
       </Head>
       <SimpleReactLightbox>
-        <AnimatePresence>
-          <Header />
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
+        <Header />
+        <Component {...pageProps} key={router.route} />
       </SimpleReactLightbox>
     </>
   )
