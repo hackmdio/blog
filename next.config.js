@@ -18,4 +18,5 @@ module.exports = withBundleAnalyzer({
   },
   i18n,
   target: 'serverless',
+  distDir: 'out',
 })
