@@ -24,16 +24,6 @@ const Header = () => {
       href: '/blog',
       icon: BookIcon,
     },
-    {
-      text: 'Projects',
-      href: '/projects',
-      icon: RepoIcon,
-    },
-    {
-      text: 'About',
-      href: '/about',
-      icon: PersonIcon,
-    },
   ]
 
   const small = !items.map((i) => i.href).includes(pathname)
@@ -47,23 +37,23 @@ const Header = () => {
         )}
       >
         <div
-          className={cx('CircleBadge user-select-none', {
+          className={cx('CircleBadge user-select-none color-bg-secondary', {
             'CircleBadge--small': small,
             'CircleBadge--large': !small,
             'mr-1': small,
             'mb-1': !small,
           })}
-          style={{ overflow: 'hidden', backgroundColor: '#F5CC7F' }}
+          style={{ overflow: 'hidden' }}
         >
           <img
-            src="/logo-animated.gif"
-            alt="Daily Oops"
-            style={{ height: 'auto', maxWidth: '90%' }}
+            src="/hackmd-logo.png"
+            alt="HackMD Blog logo"
+            style={{ height: 'auto', maxWidth: '100%' }}
           />
         </div>
 
-        <h1 className="d-flex flex-items-center flex-justify-center">
-          Daily Oops!
+        <h1 className="d-flex flex-items-center flex-justify-center d-none">
+          HackMD Blog
         </h1>
       </div>
 

@@ -3,7 +3,6 @@ import { NextSeo } from 'next-seo'
 import { DiscussionEmbed } from 'disqus-react'
 import useDarkMode from 'use-dark-mode'
 import { SRLWrapper } from 'simple-react-lightbox'
-import { motion } from 'framer-motion'
 
 import Header from 'components/Header'
 import Markdown from 'components/Markdown'
@@ -11,7 +10,6 @@ import Markdown from 'components/Markdown'
 import { getAllPostsWithSlug, formatPostsAsParams, getPostData } from 'lib/post'
 import dayjs from 'lib/dayjs'
 import { getDisqusConfig } from 'lib/disqus'
-import { springSimple } from 'lib/transition'
 
 export default function Post({ content, title, params, disqus, noteId, meta }) {
   const { year, month, day, slug } = params
@@ -60,7 +58,7 @@ export default function Post({ content, title, params, disqus, noteId, meta }) {
         }}
       />
 
-      <motion.div layoutId="blogPage" {...springSimple}>
+      <div>
         {meta?.image && (
           <div className="container pt-4 pb-1 px-3">
             <img
@@ -117,7 +115,7 @@ export default function Post({ content, title, params, disqus, noteId, meta }) {
             />
           </div>
         )}
-      </motion.div>
+      </div>
     </section>
   )
 }
