@@ -1,13 +1,19 @@
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import PostRow from 'components/PostRow'
 
 import { getAllPostsWithSlug } from 'lib/post'
 import { writeRSS } from 'lib/rss'
-import { springSimple } from 'lib/transition'
+import { useLocalePosts } from 'lib/hooks/useLocalePosts'
+import { useTranslation } from 'next-i18next'
+import nextI18NextConfig from 'next-i18next.config'
 
-export default function Home({ posts }) {
+export default function Home({ posts: _posts }) {
+  const posts = useLocalePosts(_posts)
+  const { t } = useTranslation('common')
+
   return (
     <div>
       <NextSeo
@@ -23,7 +29,7 @@ export default function Home({ posts }) {
       />
 
       <div className="d-block mx-auto container markdown-body py-4 px-3">
-        <h2>Hi</h2>
+        <h2>{t('hi')}</h2>
 
         <h2>Recent posts</h2>
 
@@ -54,7 +60,7 @@ export default function Home({ posts }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const posts = await getAllPostsWithSlug()
 
   writeRSS(posts.slice(0, 10))
@@ -62,6 +68,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts,
+      ...(await serverSideTranslations(locale, null, nextI18NextConfig)),
     },
   }
 }
