@@ -7,9 +7,10 @@ import { SRLWrapper } from 'simple-react-lightbox'
 import Header from 'components/Header'
 import Markdown from 'components/Markdown'
 
-import { getAllPostsWithSlug, formatPostsAsParams, getPostData } from 'lib/post'
+import { getAllPostsWithSlug, getPostData, formatPostAsParams } from 'lib/post'
 import dayjs from 'lib/dayjs'
 import { getDisqusConfig } from 'lib/disqus'
+import { showInAllLocale, showInLocale } from 'lib/locale'
 
 export default function Post({ content, title, params, disqus, noteId, meta }) {
   const { year, month, day, slug } = params
@@ -135,8 +136,33 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   }
 }
 
-export async function getStaticPaths() {
-  const paths = formatPostsAsParams(await getAllPostsWithSlug())
+/**
+ * @param {{ locales: Array<string> }} props
+ */
+export async function getStaticPaths({ locales }) {
+  /** @type {Array<any>} */
+  const posts = await getAllPostsWithSlug()
+
+  const paths = locales
+    .map((locale) =>
+      posts
+        .map((post) => {
+          const canShow =
+            showInLocale(post.tags, locale) ||
+            showInAllLocale(post.tags, locales)
+
+          if (canShow) {
+            return {
+              ...formatPostAsParams(post),
+              locale,
+            }
+          } else {
+            return null
+          }
+        })
+        .filter(Boolean)
+    )
+    .flat()
 
   return {
     paths,
