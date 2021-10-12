@@ -16,7 +16,7 @@ module.exports = withBundleAnalyzer({
     return config
   },
   i18n: {
-    locales: ['zh-TW', 'ja', 'en'],
+    locales: ['zh', 'ja', 'en'],
     defaultLocale: 'en',
     localeDetection: false,
   },

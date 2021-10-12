@@ -5,9 +5,13 @@ import PostRow from 'components/PostRow'
 
 import { getAllPostsWithSlug } from 'lib/post'
 import { writeRSS } from 'lib/rss'
-import { springSimple } from 'lib/transition'
+import { useLocalePosts } from 'lib/hooks/useLocalePosts'
+import { useRouter } from 'next/router'
 
-export default function Home({ posts }) {
+export default function Home({ posts: _posts }) {
+  const posts = useLocalePosts(_posts)
+  const { locale, locales } = useRouter()
+
   return (
     <div>
       <NextSeo
