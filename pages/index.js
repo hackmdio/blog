@@ -12,7 +12,7 @@ import nextI18NextConfig from 'next-i18next.config'
 
 export default function Home({ posts: _posts }) {
   const posts = useLocalePosts(_posts)
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   return (
     <div>
