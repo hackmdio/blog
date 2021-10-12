@@ -2,8 +2,11 @@ import Head from 'next/head'
 
 import { getAllPostsWithSlug } from 'lib/post'
 import PostRow from 'components/PostRow'
+import { useLocalePosts } from 'lib/hooks/useLocalePosts'
 
-export default function Blog({ posts }) {
+export default function Blog({ posts: _posts }) {
+  const posts = useLocalePosts(_posts)
+
   return (
     <article>
       <Head>
