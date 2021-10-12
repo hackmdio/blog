@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Router from 'next/router'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { AnimatePresence } from 'framer-motion'
+import { appWithTranslation } from 'next-i18next'
+import nextI18NextConfig from '../next-i18next.config'
 
 import Header from 'components/Header'
 
@@ -41,4 +43,4 @@ function MyApp({ Component, pageProps, router }) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp, nextI18NextConfig)
