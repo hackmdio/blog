@@ -66,9 +66,10 @@ export async function getStaticPaths({ locales }) {
   const paths = tags
     .filter((tag) => !locales.includes(tag))
     .map((tag) => ({ params: { tag } }))
+    .concat([{ params: { tag: 'empty' } }])
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   }
 }
