@@ -33,16 +33,14 @@ export default function Home({ posts: _posts }) {
 
         <h2>Recent posts</h2>
 
-        <div className="Box">
-          {posts.slice(0, 5).map((post, index) => (
-            <PostRow
-              post={post}
-              index={index}
-              key={post.id}
-              totalCount={posts.length}
-            />
-          ))}
-        </div>
+        {posts.slice(0, 5).map((post, index) => (
+          <PostRow
+            post={post}
+            index={index}
+            key={post.id}
+            totalCount={posts.length}
+          />
+        ))}
 
         <Link href="/blog" passHref>
           <button className="mt-3 btn mr-2" type="button">
@@ -68,7 +66,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       posts,
-      ...(await serverSideTranslations(locale, null, nextI18NextConfig)),
+      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
     },
   }
 }

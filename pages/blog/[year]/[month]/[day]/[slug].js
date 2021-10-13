@@ -80,6 +80,7 @@ export default function Post({
             {date.format('LL')}
           </span>
         </div>
+
         <SRLWrapper
           options={{
             settings: {

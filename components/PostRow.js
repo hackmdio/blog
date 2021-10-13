@@ -1,33 +1,78 @@
 import dayjs from 'lib/dayjs'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
-import { NorthStarIcon } from '@primer/octicons-react'
+import { useTranslation } from 'react-i18next'
+import Markdown from './Markdown'
+import nextI18NextConfig from '../next-i18next.config'
+import { SRLWrapper } from 'simple-react-lightbox'
 
 export default function PostRow({ post, index, totalCount }) {
   const {
     date: { year, month, day },
+    meta,
     slug,
+    author,
   } = post
   const date = dayjs(`${year}-${month}-${day}`)
 
-  return (
-    <div className="Box-row Box-row--hover-gray d-flex flex-items-start">
-      <div
-        className="mr-2 mt-1 d-flex flex-items-start"
-        style={{ color: 'var(--color-scale-red-2 )' }}
-      >
-        <NorthStarIcon />
-      </div>
-      <div className="flex-auto">
-        <Link href={`/blog/${year}/${month}/${day}/${slug}`}>
-          <a>
-            <strong>{post.title}</strong>
-          </a>
-        </Link>
+  const href = `/blog/${year}/${month}/${day}/${slug}`
 
-        <div className="text-small color-text-secondary">
-          #{totalCount - index} posted on {date.format('LL')}
+  const { t } = useTranslation('common')
+
+  return (
+    <div className="d-flex flex-items-start flex-column mb-8">
+      <div className="text-mono">{date.format('LL')}</div>
+
+      <Link href={href}>
+        <a className="h2">{post.title}</a>
+      </Link>
+
+      {author && (
+        <div className="rounded-2 mt-2 mb-0 d-flex width-fit">
+          <img
+            className="circle mr-3"
+            alt="jonrohan"
+            src={author.avatar}
+            width="48"
+            height="48"
+          />
+
+          <div>
+            <a target="_blank" rel="noopener noreferrer" href={author.profile}>
+              {author.name}
+            </a>
+
+            <p>{author.bio}</p>
+          </div>
         </div>
-      </div>
+      )}
+
+      {meta.summary && (
+        <SRLWrapper
+          options={{
+            settings: {
+              lightboxTransitionSpeed: 0.1,
+              slideAnimationType: 'both',
+              slideSpringValues: [350, 50],
+              slideTransitionTimingFunction: 'easeInOut',
+            },
+          }}
+        >
+          <Markdown content={meta.summary} className="post-container" />
+        </SRLWrapper>
+      )}
+
+      <Link href={href}>
+        <a className="mt-2">{t('read-more')}</a>
+      </Link>
     </div>
   )
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
+    },
+  }
 }

@@ -17,16 +17,14 @@ export default function Blog({ posts: _posts }) {
         className="d-block mx-auto markdown-body py-4 px-3"
         style={{ maxWidth: 680 }}
       >
-        <div className="Box">
-          {posts.map((post, index) => (
-            <PostRow
-              post={post}
-              index={index}
-              key={post.id}
-              totalCount={posts.length}
-            />
-          ))}
-        </div>
+        {posts.map((post, index) => (
+          <PostRow
+            post={post}
+            index={index}
+            key={index}
+            totalCount={posts.length}
+          />
+        ))}
 
         <a href="/feed.xml">
           <button className="mt-3 btn btn-primary" type="button">
