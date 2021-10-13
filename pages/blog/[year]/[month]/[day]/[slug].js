@@ -46,6 +46,28 @@ export default function Post({
   )
   const noteLink = `https://hackmd.io/s/${noteId}`
 
+  const authorBlock = author && (
+    <div className="container py-3 px-3">
+      <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
+        <img
+          className="circle mr-3"
+          alt="jonrohan"
+          src={author.avatar}
+          width="48"
+          height="48"
+        />
+
+        <div>
+          <a target="_blank" rel="noopener noreferrer" href={author.profile}>
+            {author.name}
+          </a>
+
+          <p>{author.bio}</p>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <section>
       <NextSeo
@@ -81,6 +103,8 @@ export default function Post({
           </span>
         </div>
 
+        {authorBlock}
+
         <SRLWrapper
           options={{
             settings: {
@@ -97,31 +121,7 @@ export default function Post({
           />
         </SRLWrapper>
 
-        {author && (
-          <div className="container py-3 px-3">
-            <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
-              <img
-                className="circle mr-3"
-                alt="jonrohan"
-                src={author.avatar}
-                width="48"
-                height="48"
-              />
-
-              <div>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={author.profile}
-                >
-                  {author.name}
-                </a>
-
-                <p>{author.bio}</p>
-              </div>
-            </div>
-          </div>
-        )}
+        {authorBlock}
 
         <div className="container py-3 px-3">
           <div className="container-block color-bg-accent color-border-accent rounded-2 p-3">
