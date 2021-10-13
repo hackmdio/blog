@@ -100,7 +100,7 @@ export default function Post({
           <div className="container py-3 px-3">
             <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
               <img
-                className="avatar mr-3"
+                className="circle mr-3"
                 alt="jonrohan"
                 src={author.avatar}
                 width="48"
