@@ -11,7 +11,7 @@ const Header = () => {
       <Link href="/">
         <a className="Header-item color-fg-default no-underline">
           <svg
-            style={{ height: 20, width: 50 }}
+            style={{ height: 20, width: 30 }}
             width="146"
             height="170"
             viewBox="0 0 146 170"
@@ -28,7 +28,11 @@ const Header = () => {
       </Link>
 
       <Link href="/blog">
-        <a className="Header-item  color-fg-default no-underline">Posts</a>
+        <a className="Header-item color-fg-default no-underline">Posts</a>
+      </Link>
+
+      <Link href="/tags">
+        <a className="Header-item color-fg-default no-underline">Tags</a>
       </Link>
 
       <NightSwitch />
