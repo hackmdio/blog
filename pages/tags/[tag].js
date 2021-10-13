@@ -35,7 +35,7 @@ export default Tag
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   /** @type {Array<{ tags: Array<string> }>} */
-  const _posts = await getAllPostsWithSlug()
+  const _posts = (await getAllPostsWithSlug()) || []
 
   let posts = []
   if (params.tag === 'empty') {
@@ -70,6 +70,6 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
