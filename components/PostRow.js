@@ -1,9 +1,7 @@
 import dayjs from 'lib/dayjs'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import Markdown from './Markdown'
-import nextI18NextConfig from '../next-i18next.config'
 import { SRLWrapper } from 'simple-react-lightbox'
 
 export default function PostRow({ post, index, totalCount }) {
@@ -67,12 +65,4 @@ export default function PostRow({ post, index, totalCount }) {
       </Link>
     </div>
   )
-}
-
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
-    },
-  }
 }
