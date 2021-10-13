@@ -4,7 +4,6 @@ import { DiscussionEmbed } from 'disqus-react'
 import useDarkMode from 'use-dark-mode'
 import { SRLWrapper } from 'simple-react-lightbox'
 
-import Header from 'components/Header'
 import Markdown from 'components/Markdown'
 
 import { getAllPostsWithSlug, getPostData, formatPostAsParams } from 'lib/post'
@@ -12,7 +11,15 @@ import dayjs from 'lib/dayjs'
 import { getDisqusConfig } from 'lib/disqus'
 import { showInAllLocale, showInLocale } from 'lib/locale'
 
-export default function Post({ content, title, params, disqus, noteId, meta }) {
+export default function Post({
+  content,
+  title,
+  params,
+  disqus,
+  noteId,
+  meta,
+  author,
+}) {
   const { year, month, day, slug } = params
   const date = dayjs(`${year}-${month}-${day}`)
   const url = `https://${disqus?.domain}/blog/${year}/${month}/${day}/${slug}`
@@ -89,8 +96,34 @@ export default function Post({ content, title, params, disqus, noteId, meta }) {
           />
         </SRLWrapper>
 
+        {author && (
+          <div className="container py-3 px-3">
+            <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
+              <img
+                className="avatar mr-3"
+                alt="jonrohan"
+                src={author.avatar}
+                width="48"
+                height="48"
+              />
+
+              <div>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={author.profile}
+                >
+                  {author.name}
+                </a>
+
+                <p>{author.bio}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="container py-3 px-3">
-          <div className="container-block color-bg-info color-border-info rounded-2 p-3">
+          <div className="container-block color-bg-accent color-border-accent rounded-2 p-3">
             本篇文章驕傲的使用 {hackmdLink()}{' '}
             <a target="_blank" href={noteLink} rel="noopener noreferrer">
               發佈
@@ -122,7 +155,7 @@ export default function Post({ content, title, params, disqus, noteId, meta }) {
 }
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const { content, title, id, meta } = await getPostData(params)
+  const { content, title, id, meta, author } = await getPostData(params)
 
   return {
     props: {
@@ -132,6 +165,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
       disqus: getDisqusConfig(),
       noteId: id,
       meta,
+      author,
     },
   }
 }

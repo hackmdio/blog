@@ -1,0 +1,17 @@
+- name: enen
+  id: enen
+  avatar: https://i.imgur.com/NOKfkrz.jpg
+  bio: 文播手出身的社群經理
+  profile: https://hackmd.io/@enen
+
+- name: elek
+  id: elek
+  avatar: https://ph-avatars.imgix.net/3369044/original?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=170&h=170&fit=crop&dpr=1
+  bio: 雜而不精的家政媽媽桑
+  profile: https://hackmd.io/@elek-hackmd
+
+- name: Yukai
+  id: yukai
+  avatar: https://i.imgur.com/r8OfMlO.jpg
+  bio: Developer, Co-founder of HackMD.
+  profile: https://hackmd.io/@yukai
