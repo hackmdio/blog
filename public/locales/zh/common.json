@@ -5,5 +5,8 @@
   "empty": "無標籤",
   "language": "語言",
   "published-on-hackmd": "本篇文章驕傲的使用 <3></3> <1></1>",
-  "published": "發佈"
+  "published": "發佈",
+  "tags": {
+    "tags": "標籤雲"
+  }
 }

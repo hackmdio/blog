@@ -11,30 +11,54 @@ const Tags = ({ tags }) => {
 
   return (
     <div>
-      <NextSeo title="Tags" />
+      <NextSeo title={t('tags.tags', 'Tags')} />
 
       <div
         className="d-block mx-auto markdown-body py-4 px-3"
         style={{ maxWidth: 680 }}
       >
-        <h1>Tags</h1>
+        <h1>{t('tags.tags', 'Tags')}</h1>
 
-        <ul>
+        <div>
           {tags.map((tag) => (
-            <li key={tag}>
+            <span key={tag} className="article-tag">
               <Link href={`/tags/${tag}`}>
-                <a>{tag}</a>
+                <a>#{tag}</a>
               </Link>
-            </li>
+            </span>
           ))}
 
-          <li>
+          <span className="article-tag">
             <Link href="/tags/empty">
-              <a>{t('empty', 'No tag')}</a>
+              <a>#{t('empty', 'No tag')}</a>
             </Link>
-          </li>
-        </ul>
+          </span>
+        </div>
       </div>
+
+      <style jsx scoped>
+        {`
+          .article-tag {
+            color: var(--color-accent-fg);
+            background-color: var(--color-accent-subtle);
+            padding: 4px 8px;
+            border-radius: 20px;
+            margin-right: 8px;
+          }
+
+          .article-tag:hover,
+          .article-tag:active {
+            background-color: var(--color-accent-emphasis);
+            color: var(--color-fg-on-emphasis);
+          }
+
+          .article-tag:hover a,
+          .article-tag:active a {
+            color: var(--color-fg-on-emphasis);
+            text-decoration: none;
+          }
+        `}
+      </style>
     </div>
   )
 }
