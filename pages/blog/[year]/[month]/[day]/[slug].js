@@ -100,6 +100,12 @@ export default function Post({
             publishedTime: time,
             modifiedTime: time,
           },
+          images: [
+            meta?.image && {
+              url: meta?.image,
+              alt: title,
+            },
+          ].filter(Boolean),
         }}
       />
 
