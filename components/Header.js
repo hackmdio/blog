@@ -1,21 +1,74 @@
 import Link from 'next/link'
+import cx from 'classnames'
 
 import NightSwitch from 'components/NightSwitch'
 import { useTranslation } from 'react-i18next'
-import nextI18nextConfig from 'next-i18next.config'
 import { useRouter } from 'next/router'
+import { ThreeBarsIcon, XIcon } from '@primer/octicons-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useStateRef } from 'lib/hooks/useStateRef'
+
+const LanguageDropdown = ({ className = '', direction = 'sw' }) => {
+  const { asPath } = useRouter()
+  const { t } = useTranslation('common')
+
+  return (
+    <details
+      className={cx(
+        'dropdown details-reset details-overlay d-inline-flex Header-item',
+        className
+      )}
+    >
+      <summary className="color-fg-muted p-2 d-inline" aria-haspopup="true">
+        {t('language')}
+        <div className="dropdown-caret ml-1"></div>
+      </summary>
+
+      <ul className={`dropdown-menu dropdown-menu-${direction}`}>
+        <Link href={asPath} locale="en">
+          <a className="dropdown-item">English</a>
+        </Link>
+
+        <Link href={asPath} locale="zh">
+          <a className="dropdown-item">中文</a>
+        </Link>
+
+        <Link href={asPath} locale="ja">
+          <a className="dropdown-item">日本語</a>
+        </Link>
+      </ul>
+    </details>
+  )
+}
 
 const Header = () => {
-  const { t } = useTranslation('common')
-  const { asPath } = useRouter()
+  const [sidebarOpen, setSidebarOpen, sidebarOpenRef] = useStateRef(false)
+  const toggleSidebar = useCallback(() => setSidebarOpen((open) => !open), [])
+  const closeSidebar = useCallback(() => setSidebarOpen(false), [])
+  const sidebarRef = useRef()
+  const clickOutside = useCallback((e) => {
+    if (
+      sidebarOpenRef.current &&
+      sidebarRef.current &&
+      !sidebarRef.current.contains(e.target)
+    ) {
+      closeSidebar()
+    }
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener('click', clickOutside)
+
+    return () => document.removeEventListener('click', clickOutside)
+  }, [])
 
   return (
     <div
-      className="navbar py-4 position-sticky top-0 d-flex px-3 flex-items-center border-bottom color-border-subtle color-bg-default"
+      className="navbar py-4 position-sticky top-0 d-flex px-3 flex-items-center border-bottom color-border-subtle color-bg-default position-relative"
       style={{ zIndex: 10 }}
     >
       <div className="d-flex justify-space-between flex-auto">
-        <div className="d-flex flex-auto">
+        <div className="d-flex flex-auto flex-items-center">
           <Link href="/">
             <a className="Header-item color-fg-default no-underline">
               <svg
@@ -36,42 +89,76 @@ const Header = () => {
           </Link>
 
           <Link href="/blog">
-            <a className="Header-item color-fg-default no-underline">Posts</a>
+            <a className="Header-item color-fg-default no-underline d-none d-sm-flex">
+              Posts
+            </a>
           </Link>
 
           <Link href="/tags">
-            <a className="Header-item color-fg-default no-underline">Tags</a>
+            <a className="Header-item color-fg-default no-underline d-none d-sm-flex">
+              Tags
+            </a>
           </Link>
         </div>
 
-        <div className="d-flex">
-          <details className="dropdown details-reset details-overlay d-inline-block Header-item">
-            <summary
-              className="color-fg-muted p-2 d-inline"
-              aria-haspopup="true"
-            >
-              {t('language')}
-              <div className="dropdown-caret ml-1"></div>
-            </summary>
+        <div className="d-flex flex-items-center">
+          <LanguageDropdown className="d-none d-sm-block" />
 
-            <ul className="dropdown-menu dropdown-menu-sw">
-              <Link href={asPath} locale="en">
-                <a className="dropdown-item">English</a>
-              </Link>
+          <NightSwitch className="d-none d-sm-block" />
 
-              <Link href={asPath} locale="zh">
-                <a className="dropdown-item">中文</a>
-              </Link>
+          <div style={{ cursor: 'pointer' }} onClick={toggleSidebar}>
+            <ThreeBarsIcon size={18} className="d-sm-none" />
+          </div>
+        </div>
 
-              <Link href={asPath} locale="ja">
-                <a className="dropdown-item">日本語</a>
-              </Link>
-            </ul>
-          </details>
+        <div
+          className={cx(
+            'position-fixed color-bg-default right-0 top-0 height-fit sidebar border-left',
+            { 'sidebar-open': sidebarOpen }
+          )}
+          style={{ width: 300, height: '100%' }}
+          ref={sidebarRef}
+        >
+          <div style={{ cursor: 'pointer' }} onClick={closeSidebar}>
+            <XIcon size={24} className="right-3 top-4 position-absolute" />
+          </div>
 
-          <NightSwitch />
+          <div className="d-flex flex-column flex-justify-center pt-8 px-5">
+            <Link href="/blog">
+              <a className="Header-item color-fg-default no-underline h3">
+                Posts
+              </a>
+            </Link>
+
+            <Link href="/tags">
+              <a className="Header-item color-fg-default no-underline h3">
+                Tags
+              </a>
+            </Link>
+
+            <LanguageDropdown direction="s" />
+
+            <NightSwitch />
+          </div>
         </div>
       </div>
+
+      <style jsx scoped>
+        {`
+          .sidebar {
+            transform: translateX(300px);
+            transition: transform 0.2s ease-in-out;
+          }
+
+          .sidebar.sidebar-open {
+            transform: translateX(0);
+          }
+
+          .sidebar .Header-item:not(:last-child) {
+            margin-bottom: 20px;
+          }
+        `}
+      </style>
     </div>
   )
 }
