@@ -46,7 +46,7 @@ export const TagGroups = ({ tags }) => {
   return (
     visibleTags.length > 0 && (
       <>
-        {tags.map((tag) => (
+        {visibleTags.map((tag) => (
           <TagPill href={`/tags/${tag}`} key={tag} tag={tag} />
         ))}
       </>
