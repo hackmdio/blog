@@ -14,7 +14,7 @@ import { getDisqusConfig } from 'lib/disqus'
 import { showInAllLocale, showInLocale } from 'lib/locale'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import TagPill from 'components/TagPill'
+import { TagGroups } from 'components/TagPill'
 
 const HacKMDLink = () => (
   <a
@@ -125,13 +125,9 @@ export default function Post({
             {date.format('LL')}
           </span>
 
-          {tags && tags.length > 0 && (
-            <div className="mt-3">
-              {tags.map((tag) => (
-                <TagPill href={`/tags/${tag}`} key={tag} tag={tag} />
-              ))}
-            </div>
-          )}
+          <div className="mt-3">
+            <TagGroups tags={tags} />
+          </div>
         </div>
 
         {authorBlock}

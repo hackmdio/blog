@@ -18,7 +18,7 @@ const Tags = ({ tags }) => {
       >
         <h1>{t('tags.tags', 'Tags')}</h1>
 
-        <div>
+        <div className="d-flex flex-wrap flex-items-center" style={{ gap: 8 }}>
           {tags.map((tag) => (
             <TagPill key={tag} tag={tag} href={`/tags/${tag}`} />
           ))}

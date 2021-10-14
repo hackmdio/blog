@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import nextI18nextConfig from 'next-i18next.config'
 
 export const TagPill = ({ tag, href }) => (
   <>
-    <span className="article-tag">
+    <span className="article-tag text-mono">
       <Link href={href}>
         <a>#{tag}</a>
       </Link>
@@ -13,8 +14,9 @@ export const TagPill = ({ tag, href }) => (
           color: var(--color-accent-fg);
           background-color: var(--color-accent-subtle);
           padding: 4px 8px;
-          border-radius: 20px;
+          border-radius: 8px;
           margin-right: 8px;
+          font-size: 0.8rem;
         }
 
         .article-tag:hover,
@@ -34,3 +36,20 @@ export const TagPill = ({ tag, href }) => (
 )
 
 export default TagPill
+
+export const TagGroups = ({ tags }) => {
+  const visibleTags =
+    tags && tags.length > 0
+      ? tags.filter((tag) => !nextI18nextConfig.i18n.locales.includes(tag))
+      : []
+
+  return (
+    visibleTags.length > 0 && (
+      <>
+        {tags.map((tag) => (
+          <TagPill href={`/tags/${tag}`} key={tag} tag={tag} />
+        ))}
+      </>
+    )
+  )
+}

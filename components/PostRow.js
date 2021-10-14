@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import Markdown from './Markdown'
 import { SRLWrapper } from 'simple-react-lightbox'
-import TagPill from './TagPill'
+import { TagGroups } from './TagPill'
 
 export default function PostRow({ post, index, totalCount }) {
   const {
@@ -23,13 +23,9 @@ export default function PostRow({ post, index, totalCount }) {
     <div className="d-flex flex-items-start flex-column mb-8">
       <div className="text-mono color-fg-muted mb-2">{date.format('LL')}</div>
 
-      {tags && tags.length > 0 && (
-        <div className="mb-2">
-          {tags.map((tag) => (
-            <TagPill href={`/tags/${tag}`} key={tag} tag={tag} />
-          ))}
-        </div>
-      )}
+      <div className="mb-2">
+        <TagGroups tags={tags} />
+      </div>
 
       <Link href={href}>
         <a className="h2 mb-3">{post.title}</a>
