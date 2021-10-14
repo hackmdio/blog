@@ -6,7 +6,7 @@ export default function NightSwitch() {
 
   return (
     <button
-      className="night-switch-button btn position-fixed top-3.5 right-3 px-2"
+      className="night-switch-button btn px-2"
       type="button"
       onClick={darkMode.toggle}
     >
