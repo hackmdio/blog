@@ -1,7 +1,9 @@
+import { useEffect, useRef, useState } from 'react'
+import $ from 'jquery'
+
 import { render } from 'lib/markdown'
 import Script from 'next/script'
 import useCopySnippet from 'lib/hooks/useCopySnippet'
-import { useEffect, useRef, useState } from 'react'
 
 const Markdown = ({ content, className = '', ...props }) => {
   useCopySnippet()
@@ -21,6 +23,7 @@ const Markdown = ({ content, className = '', ...props }) => {
     }
   }, [setMathjaxdivs, articleRef])
 
+  // Post Process
   useEffect(() => {
     if (typeof window !== 'undefined' && !window.MathJax) {
       return
@@ -55,6 +58,24 @@ const Markdown = ({ content, className = '', ...props }) => {
       })
     }
   }, [mathjaxdivs])
+
+  useEffect(() => {
+    const blockquote = $(articleRef.current)
+      .find('blockquote.raw')
+      .removeClass('raw')
+    const blockquoteP = blockquote.find('p')
+    blockquoteP.each((key, value) => {
+      let html = $(value).html()
+      $(value).html(html)
+    })
+    // color tag in blockquote will change its left border color
+    const blockquoteColor = blockquote.find('.color')
+    blockquoteColor.each((key, value) => {
+      $(value)
+        .closest('blockquote')
+        .css('border-left-color', $(value).attr('data-color'))
+    })
+  })
 
   return (
     <>

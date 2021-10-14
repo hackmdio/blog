@@ -28,6 +28,7 @@
     "got": "^11.7.0",
     "gray-matter": "^4.0.2",
     "highlight.js": "^10.7.2",
+    "jquery": "^3.6.0",
     "markdown-it": "^12.0.1",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-anchor": "^6.0.0",
@@ -41,6 +42,7 @@
     "markdown-it-mark": "^3.0.0",
     "markdown-it-math": "^4.1.1",
     "markdown-it-mathjax": "^2.0.0",
+    "markdown-it-regexp": "^0.4.0",
     "markdown-it-ruby": "^0.1.1",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
@@ -61,6 +63,7 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.7",
     "babel-plugin-module-resolver": "^4.0.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",

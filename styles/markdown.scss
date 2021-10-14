@@ -11,11 +11,24 @@
   .task-list-item {
     list-style-type: none;
   }
-  
+
   .task-list-item-checkbox {
     float: left;
-    margin: .40em 0 .2em -1.3em !important;
+    margin: 0.4em 0 0.2em -1.3em !important;
     vertical-align: middle;
-    cursor: default !important;    
+    cursor: default !important;
+  }
+
+  blockquote .small,
+  blockquote footer,
+  blockquote small {
+    display: block;
+    font-size: 80%;
+    line-height: 1.42857143;
+    color: #777;
+
+    &:before {
+      content: '\2014 \00A0';
+    }
   }
 }
