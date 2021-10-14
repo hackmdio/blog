@@ -3,6 +3,8 @@ import { NextSeo } from 'next-seo'
 import { DiscussionEmbed } from 'disqus-react'
 import useDarkMode from 'use-dark-mode'
 import { SRLWrapper } from 'simple-react-lightbox'
+import { Trans, useTranslation } from 'react-i18next'
+import nextI18NextConfig from '../../../../../next-i18next.config'
 
 import Markdown from 'components/Markdown'
 
@@ -11,6 +13,28 @@ import dayjs from 'lib/dayjs'
 import { getDisqusConfig } from 'lib/disqus'
 import { showInAllLocale, showInLocale } from 'lib/locale'
 import { useRouter } from 'next/router'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+const HacKMDLink = () => (
+  <a
+    className="no-underline color-text-primary text-semibold"
+    href="https://hackmd.io"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <i className="fas fa-file-alt" /> HackMD
+  </a>
+)
+
+const PublishedLink = ({ href }) => {
+  const { t } = useTranslation('common')
+
+  return (
+    <a target="_blank" href={href} rel="noopener noreferrer">
+      {t('published')}
+    </a>
+  )
+}
 
 export default function Post({
   content,
@@ -36,16 +60,6 @@ export default function Post({
     }, 100)
   }, [darkMode.value])
 
-  const hackmdLink = () => (
-    <a
-      className="no-underline color-text-primary text-semibold"
-      href="https://hackmd.io"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <i className="fas fa-file-alt" /> HackMD
-    </a>
-  )
   const noteLink = `https://hackmd.io/s/${noteId}`
 
   const authorBlock = author && (
@@ -127,14 +141,10 @@ export default function Post({
 
         <div className="container py-3 px-3">
           <div className="container-block color-bg-accent color-border-accent rounded-2 p-3">
-            本篇文章驕傲的使用 {hackmdLink()}{' '}
-            <a target="_blank" href={noteLink} rel="noopener noreferrer">
-              發佈
-            </a>
-            {/* For future i18n */
-            /*
-              This post is proudly <a target='_blank' href={noteLink}>published</a> with {hackmdLink()}
-            */}
+            <Trans i18nKey="published-on-hackmd" ns="common">
+              This post is proudly <PublishedLink href={noteLink} />
+              with <HacKMDLink />
+            </Trans>
           </div>
         </div>
 
@@ -157,7 +167,12 @@ export default function Post({
   )
 }
 
-export async function getStaticProps({ params, preview = false, previewData }) {
+export async function getStaticProps({
+  params,
+  preview = false,
+  previewData,
+  locale,
+}) {
   const { content, title, id, meta, author } = await getPostData(params)
 
   return {
@@ -169,6 +184,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
       noteId: id,
       meta,
       author,
+      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
     },
   }
 }

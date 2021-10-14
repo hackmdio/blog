@@ -3,5 +3,7 @@
   "read-more": "Read more",
   "log": "Blog",
   "empty": "No tag",
-  "lanuage": "Language"
+  "language": "Language",
+  "published-on-hackmd": "This post is proudly <1></1> with <3></3>",
+  "published": "published"
 }

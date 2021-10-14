@@ -50,7 +50,7 @@ const Header = () => {
               className="color-fg-muted p-2 d-inline"
               aria-haspopup="true"
             >
-              {t('lanuage')}
+              {t('language')}
               <div className="dropdown-caret ml-1"></div>
             </summary>
 
