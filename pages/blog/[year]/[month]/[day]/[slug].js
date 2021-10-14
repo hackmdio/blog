@@ -10,6 +10,7 @@ import { getAllPostsWithSlug, getPostData, formatPostAsParams } from 'lib/post'
 import dayjs from 'lib/dayjs'
 import { getDisqusConfig } from 'lib/disqus'
 import { showInAllLocale, showInLocale } from 'lib/locale'
+import { useRouter } from 'next/router'
 
 export default function Post({
   content,
@@ -25,6 +26,7 @@ export default function Post({
   const url = `https://${disqus?.domain}/blog/${year}/${month}/${day}/${slug}`
   const description = content.slice(0, 150)
   const time = date.format()
+  const { locale } = useRouter()
 
   const darkMode = useDarkMode()
   const [layoutDarkMode, setLayoutDarkMode] = useState(darkMode.value)
@@ -73,14 +75,14 @@ export default function Post({
       <NextSeo
         title={title}
         description={description}
-        titleTemplate="%s | Daily Oops!"
+        titleTemplate="%s | HackMD Blog"
         openGraph={{
           type: 'article',
-          locale: 'zh-Hant-TW',
+          locale: locale === 'zh' ? 'zh-Hant-TW' : locale,
           url,
           title,
           description,
-          site_name: 'Daily Oops!',
+          site_name: 'HackMD Blog',
           article: {
             publishedTime: time,
             modifiedTime: time,

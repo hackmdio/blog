@@ -15,7 +15,7 @@ export default function Blog({ posts: _posts }) {
   return (
     <article>
       <Head>
-        <title>{t('blog')} | Daily Oops!</title>
+        <title>{t('blog')} | HackMD Blog</title>
       </Head>
 
       <div

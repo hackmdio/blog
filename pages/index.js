@@ -17,14 +17,14 @@ export default function Home({ posts: _posts }) {
   return (
     <div>
       <NextSeo
-        title="Daily Oops!"
+        title="HackMD Blog"
         titleTemplate="%s"
-        description="Yukai's blog. Web tech, apps, photos, and notes."
+        description="HackMD's Official Blog"
         openGraph={{
           type: 'article',
           locale: 'zh-Hant-TW',
-          title: 'Daily Oops!',
-          site_name: 'Daily Oops!',
+          title: 'HackMD Blog',
+          site_name: 'HackMD Blog',
         }}
       />
 
