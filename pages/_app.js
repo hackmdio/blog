@@ -14,6 +14,7 @@ import 'styles/globals.scss'
 import 'styles/primer-dark.scss'
 import 'styles/linegutter.scss'
 import '@yukaii/github-highlightjs-themes/themes/github-light-default.css'
+import { DefaultSeo } from 'next-seo'
 
 Router.events.on(
   'routeChangeComplete',
@@ -31,7 +32,21 @@ function MyApp({ Component, pageProps, router }) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
         <meta name="color-scheme" content="dark light" />
+        <meta property="og:image" content="/favicon.png" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
+      <DefaultSeo
+        description="HackMD's Official Blog"
+        titleTemplate="%s | HackMD Blog"
+        defaultTitle="HackMD Blog"
+        openGraph={{
+          type: 'article',
+          locale: 'zh-Hant-TW',
+          title: 'HackMD Blog',
+          site_name: 'HackMD Blog',
+          description: 'HackMD Blog',
+        }}
+      />
       <SimpleReactLightbox>
         <Header />
         <Component {...pageProps} key={router.route} />

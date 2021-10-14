@@ -89,7 +89,6 @@ export default function Post({
       <NextSeo
         title={title}
         description={description}
-        titleTemplate="%s | HackMD Blog"
         openGraph={{
           type: 'article',
           locale: locale === 'zh' ? 'zh-Hant-TW' : locale,

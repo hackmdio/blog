@@ -16,18 +16,6 @@ export default function Home({ posts: _posts }) {
 
   return (
     <div>
-      <NextSeo
-        title="HackMD Blog"
-        titleTemplate="%s"
-        description="HackMD's Official Blog"
-        openGraph={{
-          type: 'article',
-          locale: 'zh-Hant-TW',
-          title: 'HackMD Blog',
-          site_name: 'HackMD Blog',
-        }}
-      />
-
       <div className="d-block mx-auto container markdown-body py-4 px-3">
         <h2>{t('hi')}</h2>
 

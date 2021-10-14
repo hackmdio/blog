@@ -1,5 +1,3 @@
-import Head from 'next/head'
-
 import { getAllPostsWithSlug } from 'lib/post'
 import PostRow from 'components/PostRow'
 import { useLocalePosts } from 'lib/hooks/useLocalePosts'
@@ -7,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import nextI18NextConfig from 'next-i18next.config'
 import { useTranslation } from 'react-i18next'
+import { NextSeo } from 'next-seo'
 
 export default function Blog({ posts: _posts }) {
   const posts = useLocalePosts(_posts)
@@ -14,9 +13,7 @@ export default function Blog({ posts: _posts }) {
 
   return (
     <article>
-      <Head>
-        <title>{t('blog')} | HackMD Blog</title>
-      </Head>
+      <NextSeo title={t('blog')} />
 
       <div
         className="d-block mx-auto markdown-body py-4 px-3"

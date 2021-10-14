@@ -1,16 +1,18 @@
 import PostRow from 'components/PostRow'
 import { useLocalePosts } from 'lib/hooks/useLocalePosts'
 import { getAllPostsWithSlug } from 'lib/post'
-import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { NextSeo } from 'next-seo'
+import nextI18NextConfig from '../../next-i18next.config'
 
 const Tag = ({ posts: _posts, tag }) => {
   const posts = useLocalePosts(_posts)
+  const { t } = useTranslation('pages')
 
   return (
     <article>
-      <Head>
-        <title>Tag | HackDM Blog</title>
-      </Head>
+      <NextSeo title={t('tag')} />
 
       <div
         className="d-block mx-auto markdown-body py-4 px-3"
@@ -33,7 +35,12 @@ const Tag = ({ posts: _posts, tag }) => {
 
 export default Tag
 
-export async function getStaticProps({ params, preview = false, previewData }) {
+export async function getStaticProps({
+  params,
+  preview = false,
+  previewData,
+  locale,
+}) {
   /** @type {Array<{ tags: Array<string> }>} */
   const _posts = (await getAllPostsWithSlug()) || []
 
@@ -50,6 +57,11 @@ export async function getStaticProps({ params, preview = false, previewData }) {
     props: {
       posts,
       tag: params.tag,
+      ...(await serverSideTranslations(
+        locale,
+        ['pages', 'common'],
+        nextI18NextConfig
+      )),
     },
   }
 }

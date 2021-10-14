@@ -4,15 +4,14 @@ import nextI18NextConfig from 'next-i18next.config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
+import { NextSeo } from 'next-seo'
 
 const Tags = ({ tags }) => {
   const { t } = useTranslation('common')
 
   return (
     <div>
-      <Head>
-        <title></title>
-      </Head>
+      <NextSeo title="Tags" />
 
       <div
         className="d-block mx-auto markdown-body py-4 px-3"

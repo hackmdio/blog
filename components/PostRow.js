@@ -19,10 +19,10 @@ export default function PostRow({ post, index, totalCount }) {
 
   return (
     <div className="d-flex flex-items-start flex-column mb-8">
-      <div className="text-mono">{date.format('LL')}</div>
+      <div className="text-mono color-fg-subtle mb-2">{date.format('LL')}</div>
 
       <Link href={href}>
-        <a className="h2">{post.title}</a>
+        <a className="h2 mb-3">{post.title}</a>
       </Link>
 
       {author && (
