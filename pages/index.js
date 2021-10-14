@@ -19,8 +19,6 @@ export default function Home({ posts: _posts }) {
       <div className="d-block mx-auto container markdown-body py-4 px-3">
         <h2>{t('hi')}</h2>
 
-        <h2>Recent posts</h2>
-
         {posts.slice(0, 5).map((post, index) => (
           <PostRow
             post={post}
@@ -31,9 +29,11 @@ export default function Home({ posts: _posts }) {
         ))}
 
         <Link href="/blog" passHref>
-          <button className="mt-3 btn mr-2" type="button">
-            Read More
-          </button>
+          <a>
+            <button className="mt-3 btn mr-2" type="button">
+              Read More
+            </button>
+          </a>
         </Link>
 
         <a href="/feed.xml">
