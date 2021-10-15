@@ -153,6 +153,22 @@ export default function Post({
           />
         </SRLWrapper>
 
+        {!meta.subscription &&
+          (locale === 'zh' ? (
+            <iframe
+              className="airtable-embed container"
+              src="https://airtable.com/embed/shrcv8ye0qwrqe7YY?backgroundColor=red&prefill_Source=Blog"
+              frameBorder="0"
+              width="100%"
+              height={800}
+              style={{
+                background: 'transparent',
+                border: 0,
+                overflow: 'hidden',
+              }}
+            ></iframe>
+          ) : null)}
+
         <div className="container py-3 px-3">
           <div className="container-block color-bg-accent color-border-accent rounded-2 p-3">
             <Trans i18nKey="published-on-hackmd" ns="common">
