@@ -53,13 +53,13 @@ const Header = () => {
 
   return (
     <div
-      className="navbar py-4 position-sticky top-0 d-flex px-3 flex-items-center border-bottom color-border-subtle color-bg-default position-relative"
-      style={{ zIndex: 10 }}
+      className="main-navbar py-4 position-fixed top-0 d-flex px-3 flex-items-center border-bottom color-border-subtle"
+      style={{ zIndex: 10, width: '100%' }}
     >
       <div className="d-flex justify-space-between flex-auto">
         <div className="d-flex flex-auto flex-items-center">
           <Link href="/">
-            <a className="Header-item color-fg-default no-underline">
+            <a className="Header-item color-fg-default no-underline mr-4">
               <svg
                 style={{ height: 20, width: 30 }}
                 width="146"
@@ -118,10 +118,10 @@ const Header = () => {
 
         <div
           className={cx(
-            'position-fixed color-bg-default right-0 top-0 height-fit sidebar border-left',
+            'position-fixed color-bg-default right-0 top-0 sidebar border-left d-sm-none',
             { 'sidebar-open': sidebarOpen }
           )}
-          style={{ width: 300, height: '100%' }}
+          style={{ width: 300, height: '100vh', overflow: 'hidden' }}
           ref={sidebarRef}
         >
           <div style={{ cursor: 'pointer' }} onClick={closeSidebar}>
@@ -176,7 +176,33 @@ const Header = () => {
           .sidebar .Header-item {
             margin-bottom: 20px;
           }
+
+          @supports (
+              -webkit-backdrop-filter: blur(30px) saturate(160%) contrast(45%) brightness(140%)
+            )
+            or
+            (
+              backdrop-filter: blur(30px) saturate(160%) contrast(45%)
+                brightness(140%)
+            ) {
+            .main-navbar {
+              background-color: rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(20px) saturate(160%) contrast(45%)
+                brightness(140%);
+              -webkit-backdrop-filter: blur(20px) saturate(160%) contrast(45%)
+                brightness(140%);
+            }
+          }
         `}
+      </style>
+
+      <style global>
+        {`
+      
+          body.dark-mode .main-navbar {
+            background-color: rgba(0, 0, 0, 0.75);
+          }
+      `}
       </style>
     </div>
   )

@@ -20,55 +20,58 @@ export default function PostRow({ post, index, totalCount }) {
   const { t } = useTranslation('common')
 
   return (
-    <div className="d-flex flex-items-start flex-column mb-8">
-      <div className="text-mono color-fg-muted mb-2">{date.format('LL')}</div>
-
-      <div className="mb-2">
-        <TagGroups tags={tags} />
+    <div className="d-flex flex-items-start flex-column mb-8 rounded-1 border color-border-default p-4">
+      <div className="text-mono color-fg-muted mb-2 f5">
+        {date.format('LL')}
       </div>
 
-      <Link href={href}>
-        <a className="h2 mb-3">{post.title}</a>
+      <TagGroups tags={tags} className="mb-2" />
+
+      <Link href={href} passHref>
+        <a className="no-underline">
+          <div className="h2 mb-3 mt-1 d-block color-fg-default">
+            {post.title}
+          </div>
+
+          {meta.summary && (
+            <SRLWrapper
+              options={{
+                settings: {
+                  lightboxTransitionSpeed: 0.1,
+                  slideAnimationType: 'both',
+                  slideSpringValues: [350, 50],
+                  slideTransitionTimingFunction: 'easeInOut',
+                },
+              }}
+            >
+              <Markdown
+                content={meta.summary}
+                className="post-container color-fg-muted"
+              />
+            </SRLWrapper>
+          )}
+        </a>
       </Link>
 
       {author && (
-        <div className="rounded-2 mt-2 mb-0 d-flex width-fit">
+        <div className="mt-4 d-flex width-fit f5 flex-items-center user-select-none">
           <img
             className="circle mr-3"
             alt="jonrohan"
             src={author.avatar}
-            width="48"
-            height="48"
+            width="40"
+            height="40"
           />
 
-          <div>
+          <div className="d-flex flex-column">
             <a target="_blank" rel="noopener noreferrer" href={author.profile}>
               {author.name}
             </a>
 
-            <p>{author.bio}</p>
+            <span className="color-fg-muted">{author.bio}</span>
           </div>
         </div>
       )}
-
-      {meta.summary && (
-        <SRLWrapper
-          options={{
-            settings: {
-              lightboxTransitionSpeed: 0.1,
-              slideAnimationType: 'both',
-              slideSpringValues: [350, 50],
-              slideTransitionTimingFunction: 'easeInOut',
-            },
-          }}
-        >
-          <Markdown content={meta.summary} className="post-container" />
-        </SRLWrapper>
-      )}
-
-      <Link href={href}>
-        <a className="mt-2">{t('read-more')}</a>
-      </Link>
     </div>
   )
 }

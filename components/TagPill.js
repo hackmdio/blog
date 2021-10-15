@@ -3,11 +3,11 @@ import nextI18nextConfig from 'next-i18next.config'
 
 export const TagPill = ({ tag, href }) => (
   <>
-    <span className="article-tag text-mono">
-      <Link href={href}>
+    <Link href={href} passHref>
+      <span className="article-tag text-mono">
         <a>#{tag}</a>
-      </Link>
-    </span>
+      </span>
+    </Link>
     <style jsx scoped>
       {`
         .article-tag {
@@ -17,6 +17,7 @@ export const TagPill = ({ tag, href }) => (
           border-radius: 8px;
           margin-right: 8px;
           font-size: 0.8rem;
+          cursor: pointer;
         }
 
         .article-tag:hover,

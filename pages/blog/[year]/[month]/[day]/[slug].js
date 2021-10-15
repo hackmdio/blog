@@ -75,12 +75,12 @@ export default function Post({
           height="48"
         />
 
-        <div>
+        <div className="flex flex-column">
           <a target="_blank" rel="noopener noreferrer" href={author.profile}>
             {author.name}
           </a>
 
-          <p>{author.bio}</p>
+          <div>{author.bio}</div>
         </div>
       </div>
     </div>

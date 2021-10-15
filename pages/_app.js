@@ -49,10 +49,11 @@ function MyApp({ Component, pageProps, router }) {
         }}
       />
       <SimpleReactLightbox>
-        <Header />
-        <Component {...pageProps} key={router.route} />
+        <div className="overflow-x-hidden pt-10">
+          <Header />
+          <Component {...pageProps} key={router.route} />
+        </div>
       </SimpleReactLightbox>
-
       <Script src="/noflash.js" strategy="beforeInteractive" />
     </>
   )
