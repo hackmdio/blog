@@ -19,8 +19,12 @@ body.dark-mode {
     h5,
     h6 {
       .octicon-link {
-        color: var(--color-text-secondary);
+        color: var(--color-text-muted);
       }
+    }
+
+    mark {
+      background-color: var(--color-scale-yellow-8);
     }
   }
 

@@ -1,7 +1,7 @@
 .markdown-body {
   .container-block {
     margin-bottom: 1.8em;
-    border-left: 6px solid var(--color-border-primary);
+    border-left: 6px solid var(--color-border-default);
 
     p {
       margin-bottom: 0;
@@ -30,5 +30,11 @@
     &:before {
       content: '\2014 \00A0';
     }
+  }
+
+  img + strong {
+    display: block;
+    text-align: center;
+    font-weight: normal;
   }
 }
