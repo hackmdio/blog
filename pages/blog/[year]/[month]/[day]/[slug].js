@@ -121,13 +121,9 @@ export default function Post({
           </div>
         )}
         <div className="container pt-4 pb-3 px-3">
-          <span className="text-mono color-text-tertiary">
-            {date.format('LL')}
-          </span>
+          <span className="text-mono color-fg-muted">{date.format('LL')}</span>
 
-          <div className="mt-3">
-            <TagGroups tags={tags} />
-          </div>
+          <TagGroups tags={tags} className="mt-3" />
         </div>
 
         <div className="container pb-3 px-3">

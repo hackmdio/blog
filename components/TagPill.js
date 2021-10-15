@@ -37,7 +37,7 @@ export const TagPill = ({ tag, href }) => (
 
 export default TagPill
 
-export const TagGroups = ({ tags }) => {
+export const TagGroups = ({ tags, className = '' }) => {
   const visibleTags =
     tags && tags.length > 0
       ? tags.filter((tag) => !nextI18nextConfig.i18n.locales.includes(tag))
@@ -45,11 +45,11 @@ export const TagGroups = ({ tags }) => {
 
   return (
     visibleTags.length > 0 && (
-      <>
+      <div className={className}>
         {visibleTags.map((tag) => (
           <TagPill href={`/tags/${tag}`} key={tag} tag={tag} />
         ))}
-      </>
+      </div>
     )
   )
 }
