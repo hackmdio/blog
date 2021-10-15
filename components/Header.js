@@ -8,40 +8,29 @@ import { ThreeBarsIcon, XIcon } from '@primer/octicons-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useStateRef } from 'lib/hooks/useStateRef'
 
-const LanguageDropdown = ({ className = '', direction = 'sw' }) => {
+const LanguageItems = () => {
   const { asPath } = useRouter()
-  const { t } = useTranslation('common')
 
   return (
-    <details
-      className={cx(
-        'dropdown details-reset details-overlay d-inline-flex Header-item',
-        className
-      )}
-    >
-      <summary className="color-fg-muted p-2 d-inline" aria-haspopup="true">
-        {t('language')}
-        <div className="dropdown-caret ml-1"></div>
-      </summary>
+    <>
+      <Link href={asPath} locale="en">
+        <a className="Header-item no-underline color-fg-default">English</a>
+      </Link>
 
-      <ul className={`dropdown-menu dropdown-menu-${direction}`}>
-        <Link href={asPath} locale="en">
-          <a className="dropdown-item">English</a>
-        </Link>
+      <Link href={asPath} locale="zh">
+        <a className="Header-item no-underline color-fg-default">中文</a>
+      </Link>
 
-        <Link href={asPath} locale="zh">
-          <a className="dropdown-item">中文</a>
-        </Link>
-
-        <Link href={asPath} locale="ja">
-          <a className="dropdown-item">日本語</a>
-        </Link>
-      </ul>
-    </details>
+      <Link href={asPath} locale="ja">
+        <a className="Header-item no-underline color-fg-default">日本語</a>
+      </Link>
+    </>
   )
 }
 
 const Header = () => {
+  const { asPath } = useRouter()
+
   const [sidebarOpen, setSidebarOpen, sidebarOpenRef] = useStateRef(false)
   const toggleSidebar = useCallback(() => setSidebarOpen((open) => !open), [])
   const closeSidebar = useCallback(() => setSidebarOpen(false), [])
@@ -102,7 +91,23 @@ const Header = () => {
         </div>
 
         <div className="d-flex flex-items-center">
-          <LanguageDropdown className="d-none d-sm-block" />
+          <Link href={asPath} locale="en">
+            <a className="Header-item no-underline color-fg-default d-none d-sm-flex">
+              English
+            </a>
+          </Link>
+
+          <Link href={asPath} locale="zh">
+            <a className="Header-item no-underline color-fg-default d-none d-sm-flex">
+              中文
+            </a>
+          </Link>
+
+          <Link href={asPath} locale="ja">
+            <a className="Header-item no-underline color-fg-default d-none d-sm-flex">
+              日本語
+            </a>
+          </Link>
 
           <NightSwitch className="d-none d-sm-block" />
 
@@ -136,7 +141,21 @@ const Header = () => {
               </a>
             </Link>
 
-            <LanguageDropdown direction="s" />
+            <Link href={asPath} locale="en">
+              <a className="Header-item no-underline color-fg-default">
+                English
+              </a>
+            </Link>
+
+            <Link href={asPath} locale="zh">
+              <a className="Header-item no-underline color-fg-default">中文</a>
+            </Link>
+
+            <Link href={asPath} locale="ja">
+              <a className="Header-item no-underline color-fg-default">
+                日本語
+              </a>
+            </Link>
 
             <NightSwitch />
           </div>
