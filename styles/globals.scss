@@ -20,6 +20,8 @@ html {
 .markdown-body img {
   border-radius: 6px;
   cursor: zoom-in;
+  display: block;
+  margin: 0 auto;
 }
 
 .markdown-body pre .copy-snippet-button {
@@ -60,7 +62,7 @@ html {
   height: 240px;
   transition: max-height 150ms ease-in-out;
   max-height: 240px;
-  
+
   &.small {
     max-height: 100px;
   }

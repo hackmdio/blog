@@ -65,7 +65,7 @@ export default function Post({
   const noteLink = `https://hackmd.io/s/${noteId}`
 
   const authorBlock = author && (
-    <div className="container py-3 px-3">
+    <div className="container px-3 pb-8">
       <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
         <img
           className="circle mr-3"
@@ -130,6 +130,10 @@ export default function Post({
           </div>
         </div>
 
+        <div className="container pb-3 px-3">
+          <h1>{title}</h1>
+        </div>
+
         {authorBlock}
 
         <SRLWrapper
@@ -145,10 +149,9 @@ export default function Post({
           <Markdown
             content={content}
             className="container post-container px-3"
+            skippedTitle={title}
           />
         </SRLWrapper>
-
-        {authorBlock}
 
         <div className="container py-3 px-3">
           <div className="container-block color-bg-accent color-border-accent rounded-2 p-3">

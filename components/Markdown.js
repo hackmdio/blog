@@ -5,7 +5,7 @@ import { render } from 'lib/markdown'
 import Script from 'next/script'
 import useCopySnippet from 'lib/hooks/useCopySnippet'
 
-const Markdown = ({ content, className = '', ...props }) => {
+const Markdown = ({ content, className = '', skippedTitle = '', ...props }) => {
   useCopySnippet()
 
   /**
@@ -86,7 +86,9 @@ const Markdown = ({ content, className = '', ...props }) => {
           typeof="schema:Article schema:BlogPosting"
           property="schema:articleBody"
           className={`markdown-body ${className}`}
-          dangerouslySetInnerHTML={{ __html: render(content) }}
+          dangerouslySetInnerHTML={{
+            __html: render(content, { title: skippedTitle }),
+          }}
           {...props}
         />
       </main>

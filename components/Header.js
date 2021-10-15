@@ -173,7 +173,7 @@ const Header = () => {
             transform: translateX(0);
           }
 
-          .sidebar .Header-item:not(:last-child) {
+          .sidebar .Header-item {
             margin-bottom: 20px;
           }
         `}
