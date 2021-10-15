@@ -15,6 +15,7 @@ import 'styles/primer-dark.scss'
 import 'styles/linegutter.scss'
 import '@yukaii/github-highlightjs-themes/themes/github-light-default.css'
 import { DefaultSeo } from 'next-seo'
+import Script from 'next/script'
 
 Router.events.on(
   'routeChangeComplete',
@@ -51,6 +52,8 @@ function MyApp({ Component, pageProps, router }) {
         <Header />
         <Component {...pageProps} key={router.route} />
       </SimpleReactLightbox>
+
+      <Script src="/noflash.js" strategy="beforeInteractive" />
     </>
   )
 }
