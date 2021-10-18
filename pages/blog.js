@@ -17,15 +17,10 @@ export default function Blog({ posts: _posts }) {
 
       <div
         className="d-block mx-auto markdown-body py-4 px-3"
-        style={{ maxWidth: 680 }}
+        style={{ maxWidth: 750 }}
       >
         {posts.map((post, index) => (
-          <PostRow
-            post={post}
-            index={index}
-            key={index}
-            totalCount={posts.length}
-          />
+          <PostRow post={post} key={index} />
         ))}
 
         <a href="/feed.xml">

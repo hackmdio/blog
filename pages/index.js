@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { NextSeo } from 'next-seo'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import PostRow from 'components/PostRow'
@@ -9,23 +8,22 @@ import { writeRSS } from 'lib/rss'
 import { useLocalePosts } from 'lib/hooks/useLocalePosts'
 import { useTranslation } from 'next-i18next'
 import nextI18NextConfig from 'next-i18next.config'
+import Signup from 'components/Signup'
+import { useRouter } from 'next/router'
+import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
 
 export default function Home({ posts: _posts }) {
   const posts = useLocalePosts(_posts)
   const { t } = useTranslation('common')
+  const { locale } = useRouter()
 
   return (
     <div>
       <div className="d-block mx-auto container markdown-body py-4 px-3">
-        <h2>{t('hi')}</h2>
+        <h2>{t('recent', 'Recent posts')}</h2>
 
         {posts.slice(0, 5).map((post, index) => (
-          <PostRow
-            post={post}
-            index={index}
-            key={post.id}
-            totalCount={posts.length}
-          />
+          <PostRow post={post} key={post.id} showAuthor={false} />
         ))}
 
         <Link href="/blog" passHref>
@@ -41,6 +39,12 @@ export default function Home({ posts: _posts }) {
             Subscribe via RSS
           </button>
         </a>
+      </div>
+
+      <Signup />
+
+      <div className="mt-6">
+        {locale === 'zh' ? <SubscriptionFrameZh /> : null}
       </div>
     </div>
   )

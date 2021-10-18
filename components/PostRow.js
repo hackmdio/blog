@@ -5,7 +5,7 @@ import Markdown from './Markdown'
 import { SRLWrapper } from 'simple-react-lightbox'
 import { TagGroups } from './TagPill'
 
-export default function PostRow({ post, index, totalCount }) {
+export default function PostRow({ post, showAuthor = true }) {
   const {
     date: { year, month, day },
     meta,
@@ -53,7 +53,7 @@ export default function PostRow({ post, index, totalCount }) {
         </a>
       </Link>
 
-      {author && (
+      {showAuthor && author && (
         <div className="mt-4 d-flex width-fit f5 flex-items-center user-select-none">
           <img
             className="circle mr-3"

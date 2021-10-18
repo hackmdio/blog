@@ -15,6 +15,7 @@ import { showInAllLocale, showInLocale } from 'lib/locale'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { TagGroups } from 'components/TagPill'
+import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
 
 const HacKMDLink = () => (
   <a
@@ -65,7 +66,7 @@ export default function Post({
   const noteLink = `https://hackmd.io/s/${noteId}`
 
   const authorBlock = author && (
-    <div className="container px-3 pb-8">
+    <div className="container pb-5">
       <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
         <img
           className="circle mr-3"
@@ -149,23 +150,13 @@ export default function Post({
           />
         </SRLWrapper>
 
-        {!meta.subscription &&
-          (locale === 'zh' ? (
-            <iframe
-              className="airtable-embed container"
-              src="https://airtable.com/embed/shrcv8ye0qwrqe7YY?backgroundColor=red&prefill_Source=Blog"
-              frameBorder="0"
-              width="100%"
-              height={800}
-              style={{
-                background: 'transparent',
-                border: 0,
-                overflow: 'hidden',
-              }}
-            ></iframe>
-          ) : null)}
+        {!meta.subscription && (
+          <div className="mt-8">
+            {locale === 'zh' ? <SubscriptionFrameZh /> : null}
+          </div>
+        )}
 
-        <div className="container py-3 px-3">
+        <div className="container py-6">
           <div className="container-block color-bg-accent color-border-accent rounded-2 p-3">
             <Trans i18nKey="published-on-hackmd" ns="common">
               This post is proudly <PublishedLink href={noteLink} />
