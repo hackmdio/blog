@@ -2,6 +2,7 @@
   id: enen
   avatar: https://i.imgur.com/NOKfkrz.jpg
   bio: 文播手出身的社群經理
+  bio_ja: ライター出身のSNSマネージャー
   profile: https://hackmd.io/@enen
 
 - name: elek
@@ -9,6 +10,12 @@
   avatar: https://ph-avatars.imgix.net/3369044/original?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=170&h=170&fit=crop&dpr=1
   bio: 雜而不精的家政媽媽桑
   profile: https://hackmd.io/@elek-hackmd
+
+- name: Stanley
+  id: stanley
+  avatar: https://hackmd.io/_uploads/rk8IuCUBF.png
+  bio: 面惡心善的業務經理
+  profile: https://hackmd.io/@StanleyWu
 
 - name: Yukai
   id: yukai

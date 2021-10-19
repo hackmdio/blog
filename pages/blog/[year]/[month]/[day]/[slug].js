@@ -16,6 +16,7 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { TagGroups } from 'components/TagPill'
 import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
+import AuthorBlock from 'components/AuthorBlock'
 
 const HacKMDLink = () => (
   <a
@@ -65,28 +66,6 @@ export default function Post({
 
   const noteLink = `https://hackmd.io/s/${noteId}`
 
-  const authorBlock = author && (
-    <div className="container pb-5">
-      <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
-        <img
-          className="circle mr-3"
-          alt="jonrohan"
-          src={author.avatar}
-          width="48"
-          height="48"
-        />
-
-        <div className="flex flex-column">
-          <a target="_blank" rel="noopener noreferrer" href={author.profile}>
-            {author.name}
-          </a>
-
-          <div>{author.bio}</div>
-        </div>
-      </div>
-    </div>
-  )
-
   return (
     <section>
       <NextSeo
@@ -131,7 +110,7 @@ export default function Post({
           <h1>{title}</h1>
         </div>
 
-        {authorBlock}
+        {author && <AuthorBlock author={author} />}
 
         <SRLWrapper
           options={{
