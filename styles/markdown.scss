@@ -39,4 +39,16 @@
     color: var(--color-fg-muted);
     font-size: smaller;
   }
+
+  .emoji {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin-bottom: -0.25em;
+    background-size: contain;
+
+    max-width: none;
+    vertical-align: text-top;
+    background-color: transparent;
+  }
 }
