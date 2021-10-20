@@ -10,15 +10,15 @@ const Tags = ({ tags }) => {
 
   return (
     <div>
-      <NextSeo title={t('tags.tags', 'Tags')} />
+      <NextSeo title={t('tags', 'Tags')} />
 
       <div
-        className="d-block mx-auto markdown-body py-4 px-3"
+        className="px-3 py-4 mx-auto d-block markdown-body"
         style={{ maxWidth: 680 }}
       >
-        <h1>{t('tags.tags', 'Tags')}</h1>
+        <h1>{t('tags', 'Tags')}</h1>
 
-        <div className="d-flex flex-wrap flex-items-center" style={{ gap: 8 }}>
+        <div className="flex-wrap d-flex flex-items-center" style={{ gap: 8 }}>
           {tags.map((tag) => (
             <TagPill key={tag} tag={tag} href={`/tags/${tag}`} />
           ))}

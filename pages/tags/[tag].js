@@ -8,25 +8,20 @@ import nextI18NextConfig from '../../next-i18next.config'
 
 const Tag = ({ posts: _posts, tag }) => {
   const posts = useLocalePosts(_posts)
-  const { t } = useTranslation('pages')
+  const { t } = useTranslation('common')
 
   return (
     <article>
-      <NextSeo title={t('tag')} />
+      <NextSeo title={t('pages.tags', 'Tags')} />
 
       <div
-        className="d-block mx-auto markdown-body py-4 px-3"
+        className="px-3 py-4 mx-auto d-block markdown-body"
         style={{ maxWidth: 680 }}
       >
-        <h3 className="h1 no-underline text-center">#{tag}</h3>
+        <h3 className="text-center no-underline h1">#{tag}</h3>
 
         {posts.map((post, index) => (
-          <PostRow
-            post={post}
-            index={index}
-            key={index}
-            totalCount={posts.length}
-          />
+          <PostRow post={post} key={index} />
         ))}
       </div>
     </article>

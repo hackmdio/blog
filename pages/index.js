@@ -19,7 +19,7 @@ export default function Home({ posts: _posts }) {
 
   return (
     <div>
-      <div className="d-block mx-auto container markdown-body py-4 px-3">
+      <div className="container px-3 pt-4 pb-8 mx-auto d-block markdown-body">
         <h2>{t('recent', 'Recent posts')}</h2>
 
         {posts.slice(0, 5).map((post, index) => (
@@ -28,15 +28,15 @@ export default function Home({ posts: _posts }) {
 
         <Link href="/blog" passHref>
           <a>
-            <button className="mt-3 btn mr-2" type="button">
-              Read More
+            <button className="mt-3 mr-2 btn" type="button">
+              {t('read-more', 'Read more')}
             </button>
           </a>
         </Link>
 
         <a href="/feed.xml">
           <button className="mt-3 btn btn-primary" type="button">
-            Subscribe via RSS
+            {t('subscribe-via-rss', 'Subscribe via RSS')}
           </button>
         </a>
       </div>

@@ -5,5 +5,12 @@
   "empty": "No tag",
   "language": "Language",
   "published-on-hackmd": "This post is proudly <1></1> with <3></3>",
-  "published": "published"
+  "published": "published",
+  "subscribe-via-rss": "Subscribe via RSS",
+  "pages": {
+    "blog": "Blog",
+    "tags": "Tags"
+  },
+  "hackmd-blog": "HackMD Blog",
+  "posts": "Posts"
 }

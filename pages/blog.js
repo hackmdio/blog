@@ -9,14 +9,14 @@ import { NextSeo } from 'next-seo'
 
 export default function Blog({ posts: _posts }) {
   const posts = useLocalePosts(_posts)
-  const { t } = useTranslation('pages')
+  const { t } = useTranslation('common')
 
   return (
     <article>
-      <NextSeo title={t('blog')} />
+      <NextSeo title={t('pages.blog', 'Blog')} />
 
       <div
-        className="d-block mx-auto markdown-body py-4 px-3"
+        className="px-3 py-4 mx-auto d-block markdown-body"
         style={{ maxWidth: 750 }}
       >
         {posts.map((post, index) => (
@@ -25,7 +25,7 @@ export default function Blog({ posts: _posts }) {
 
         <a href="/feed.xml">
           <button className="mt-3 btn btn-primary" type="button">
-            Subscribe via RSS
+            {t('subscribe-via-rss', 'Subscribe via RSS')}
           </button>
         </a>
       </div>

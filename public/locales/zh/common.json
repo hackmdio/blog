@@ -6,9 +6,16 @@
   "language": "語言",
   "published-on-hackmd": "本篇文章驕傲的使用 <3></3> <1></1>",
   "published": "發佈",
-  "tags": {
-    "tags": "標籤雲"
+  "tags": "標籤",
+  "signup": "前往註冊",
+  "recent": "最近文章",
+  "subscribe-via-rss": "用 RSS 訂閱",
+  "pages": {
+    "blog": "部落格",
+    "tag": "標籤",
+    "tags": "標籤"
   },
-  "signup": "註冊",
-  "recent": "最近文章"
+  "hackmd-blog": "HackMD 部落格",
+  "posts": "所有文章",
+  "getting-started-with-hackmd": "立刻開始使用 HackMD"
 }

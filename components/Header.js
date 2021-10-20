@@ -14,15 +14,15 @@ const LanguageItems = () => {
   return (
     <>
       <Link href={asPath} locale="en">
-        <a className="Header-item no-underline color-fg-default">English</a>
+        <a className="no-underline Header-item color-fg-default">English</a>
       </Link>
 
       <Link href={asPath} locale="zh">
-        <a className="Header-item no-underline color-fg-default">中文</a>
+        <a className="no-underline Header-item color-fg-default">中文</a>
       </Link>
 
       <Link href={asPath} locale="ja">
-        <a className="Header-item no-underline color-fg-default">日本語</a>
+        <a className="no-underline Header-item color-fg-default">日本語</a>
       </Link>
     </>
   )
@@ -30,6 +30,7 @@ const LanguageItems = () => {
 
 const Header = () => {
   const { asPath } = useRouter()
+  const { t } = useTranslation('common')
 
   const [sidebarOpen, setSidebarOpen, sidebarOpenRef] = useStateRef(false)
   const toggleSidebar = useCallback(() => setSidebarOpen((open) => !open), [])
@@ -53,13 +54,13 @@ const Header = () => {
 
   return (
     <div
-      className="main-navbar py-4 position-fixed top-0 d-flex px-3 flex-items-center border-bottom color-border-subtle"
+      className="top-0 px-3 py-4 main-navbar position-fixed d-flex flex-items-center border-bottom color-border-subtle"
       style={{ zIndex: 10, width: '100%' }}
     >
-      <div className="d-flex justify-space-between flex-auto">
-        <div className="d-flex flex-auto flex-items-center">
+      <div className="flex-auto d-flex justify-space-between">
+        <div className="flex-auto d-flex flex-items-center">
           <Link href="/">
-            <a className="Header-item color-fg-default no-underline mr-4">
+            <a className="mr-4 no-underline Header-item color-fg-default">
               <svg
                 style={{ height: 20, width: 30 }}
                 width="146"
@@ -73,38 +74,40 @@ const Header = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span className="text-mono h4">HackMD Blog</span>
+              <span className="text-mono h4">
+                {t('hackmd-blog', 'HackMD Blog')}
+              </span>
             </a>
           </Link>
 
           <Link href="/blog">
-            <a className="Header-item color-fg-default no-underline d-none d-sm-flex">
-              Posts
+            <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
+              {t('posts', 'Posts')}
             </a>
           </Link>
 
           <Link href="/tags">
-            <a className="Header-item color-fg-default no-underline d-none d-sm-flex">
-              Tags
+            <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
+              {t('tags', 'Tags')}
             </a>
           </Link>
         </div>
 
         <div className="d-flex flex-items-center">
           <Link href={asPath} locale="en">
-            <a className="Header-item no-underline color-fg-default d-none d-sm-flex">
+            <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
               English
             </a>
           </Link>
 
           <Link href={asPath} locale="zh">
-            <a className="Header-item no-underline color-fg-default d-none d-sm-flex">
+            <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
               中文
             </a>
           </Link>
 
           <Link href={asPath} locale="ja">
-            <a className="Header-item no-underline color-fg-default d-none d-sm-flex">
+            <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
               日本語
             </a>
           </Link>
@@ -128,31 +131,31 @@ const Header = () => {
             <XIcon size={24} className="right-3 top-4 position-absolute" />
           </div>
 
-          <div className="d-flex flex-column flex-justify-center pt-8 px-5">
+          <div className="px-5 pt-8 d-flex flex-column flex-justify-center">
             <Link href="/blog">
-              <a className="Header-item color-fg-default no-underline h3">
-                Posts
+              <a className="no-underline Header-item color-fg-default h3">
+                {t('posts', 'Posts')}
               </a>
             </Link>
 
             <Link href="/tags">
-              <a className="Header-item color-fg-default no-underline h3">
-                Tags
+              <a className="no-underline Header-item color-fg-default h3">
+                {t('tags', 'Tags')}
               </a>
             </Link>
 
             <Link href={asPath} locale="en">
-              <a className="Header-item no-underline color-fg-default">
+              <a className="no-underline Header-item color-fg-default">
                 English
               </a>
             </Link>
 
             <Link href={asPath} locale="zh">
-              <a className="Header-item no-underline color-fg-default">中文</a>
+              <a className="no-underline Header-item color-fg-default">中文</a>
             </Link>
 
             <Link href={asPath} locale="ja">
-              <a className="Header-item no-underline color-fg-default">
+              <a className="no-underline Header-item color-fg-default">
                 日本語
               </a>
             </Link>

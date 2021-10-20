@@ -4,13 +4,13 @@ export const Signup = () => {
   const { t } = useTranslation('common')
 
   return (
-    <div className="color-bg-subtle flex flex-justify-center text-center py-8">
-      <h2 className="mb-5 h1">Get started with HackMD</h2>
-
-      <p className="mb-5 f4">Blah blah blah</p>
+    <div className="flex py-8 text-center color-bg-subtle flex-justify-center">
+      <h2 className="mb-5 h1">
+        {t('getting-started-with-hackmd', 'Get started with HackMD')}
+      </h2>
 
       <a href="https://hackmd.io" target="_blank" rel="noopener noreferrer">
-        <button className="btn btn-primary px-5 py-2">
+        <button className="px-5 py-2 btn btn-primary">
           {t('signup', 'Sign up')}
         </button>
       </a>
