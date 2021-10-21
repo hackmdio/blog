@@ -32,7 +32,7 @@
     }
   }
 
-  img + strong {
+  img:not(.emoji) + strong {
     display: block;
     text-align: center;
     font-weight: normal;
