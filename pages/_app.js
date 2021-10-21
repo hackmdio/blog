@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps, router }) {
         />
         <meta name="color-scheme" content="dark light" />
         <meta property="og:image" content="/favicon.png" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <DefaultSeo
