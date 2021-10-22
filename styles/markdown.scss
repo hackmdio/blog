@@ -40,9 +40,9 @@
     font-size: smaller;
   }
 
-  .emoji {
-    width: 1.3rem;
-    height: 1.3rem;
+  img.emoji {
+    width: 1.3em;
+    height: 1.3em;
     display: inline-block;
     margin-bottom: -0.25em;
     background-size: contain;
@@ -51,4 +51,16 @@
     vertical-align: text-top;
     background-color: transparent;
   }
+}
+
+img.emoji {
+  width: 1.3em;
+  height: 1.3em;
+  display: inline-block;
+  margin-bottom: -0.25em;
+  background-size: contain;
+
+  max-width: none;
+  vertical-align: text-top;
+  background-color: transparent;
 }

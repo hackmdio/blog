@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Markdown from './Markdown'
 import { SRLWrapper } from 'simple-react-lightbox'
 import { TagGroups } from './TagPill'
+import { renderInline } from 'lib/markdown'
 
 export default function PostRow({ post, showAuthor = true }) {
   const {
@@ -20,8 +21,8 @@ export default function PostRow({ post, showAuthor = true }) {
   const { t } = useTranslation('common')
 
   return (
-    <div className="d-flex flex-items-start flex-column mb-8 rounded-1 border color-border-default p-4">
-      <div className="text-mono color-fg-muted mb-2 f5">
+    <div className="p-4 mb-8 border d-flex flex-items-start flex-column rounded-1 color-border-default">
+      <div className="mb-2 text-mono color-fg-muted f5">
         {date.format('LL')}
       </div>
 
@@ -29,9 +30,10 @@ export default function PostRow({ post, showAuthor = true }) {
 
       <Link href={href} passHref>
         <a className="no-underline">
-          <div className="h2 mb-3 mt-1 d-block color-fg-default">
-            {post.title}
-          </div>
+          <div
+            className="mt-1 mb-3 h2 d-block color-fg-default"
+            dangerouslySetInnerHTML={{ __html: renderInline(post.title) }}
+          />
 
           {meta.summary && (
             <SRLWrapper
@@ -56,7 +58,7 @@ export default function PostRow({ post, showAuthor = true }) {
       {showAuthor && author && (
         <div className="mt-4 d-flex width-fit f5 flex-items-center user-select-none">
           <img
-            className="circle mr-3"
+            className="mr-3 circle"
             alt="jonrohan"
             src={author.avatar}
             width="40"

@@ -17,6 +17,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { TagGroups } from 'components/TagPill'
 import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
 import AuthorBlock from 'components/AuthorBlock'
+import { renderInline } from 'lib/markdown'
 
 const HacKMDLink = () => (
   <a
@@ -93,21 +94,21 @@ export default function Post({
 
       <div>
         {meta?.image && (
-          <div className="container pt-4 pb-1 px-3">
+          <div className="container px-3 pt-4 pb-1">
             <img
               src={meta?.image}
               style={{ maxWidth: '100%', borderRadius: 6 }}
             />
           </div>
         )}
-        <div className="container pt-4 pb-3 px-3">
+        <div className="container px-3 pt-4 pb-3">
           <span className="text-mono color-fg-muted">{date.format('LL')}</span>
 
           <TagGroups tags={tags} className="mt-3" />
         </div>
 
-        <div className="container pb-3 px-3">
-          <h1>{title}</h1>
+        <div className="container px-3 pb-3">
+          <h1 dangerouslySetInnerHTML={{ __html: renderInline(title) }} />
         </div>
 
         {author && <AuthorBlock author={author} />}
@@ -124,7 +125,7 @@ export default function Post({
         >
           <Markdown
             content={content}
-            className="container post-container px-3"
+            className="container px-3 post-container"
             skippedTitle={title}
           />
         </SRLWrapper>
@@ -136,7 +137,7 @@ export default function Post({
         )}
 
         <div className="container py-6">
-          <div className="container-block color-bg-accent color-border-accent rounded-2 p-3">
+          <div className="p-3 container-block color-bg-accent color-border-accent rounded-2">
             <Trans i18nKey="published-on-hackmd" ns="common">
               This post is proudly <PublishedLink href={noteLink} />
               with <HacKMDLink />
@@ -145,7 +146,7 @@ export default function Post({
         </div>
 
         {disqus && (
-          <div className="container py-3 px-3">
+          <div className="container px-3 py-3">
             <DiscussionEmbed
               shortname={disqus.shortname}
               config={{
