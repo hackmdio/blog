@@ -32,7 +32,7 @@ export const AuthorBlock = ({ author }) => {
             {author.name}
           </a>
 
-          <div>{bio}</div>
+          {bio && <div>{bio}</div>}
         </div>
       </div>
     </div>
