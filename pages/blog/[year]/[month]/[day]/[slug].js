@@ -111,7 +111,11 @@ export default function Post({
           <h1 dangerouslySetInnerHTML={{ __html: renderInline(title) }} />
         </div>
 
-        {author && <AuthorBlock author={author} />}
+        {author && (
+          <div className="container px-3 pb-3">
+            <AuthorBlock author={author} />
+          </div>
+        )}
 
         <SRLWrapper
           options={{
@@ -136,7 +140,7 @@ export default function Post({
           </div>
         )}
 
-        <div className="container py-6">
+        <div className="container py-6 px-3">
           <div className="p-3 container-block color-bg-accent color-border-accent rounded-2">
             <Trans i18nKey="published-on-hackmd" ns="common">
               This post is proudly <PublishedLink href={noteLink} />
