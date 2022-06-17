@@ -13,7 +13,8 @@
   "pages": {
     "blog": "部落格",
     "tag": "標籤",
-    "tags": "標籤"
+    "tags": "標籤",
+    "changelog": "版本更新"
   },
   "hackmd-blog": "HackMD 部落格",
   "posts": "所有文章",
