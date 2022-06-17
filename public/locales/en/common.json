@@ -9,7 +9,8 @@
   "subscribe-via-rss": "Subscribe via RSS",
   "pages": {
     "blog": "Blog",
-    "tags": "Tags"
+    "tags": "Tags",
+    "changelog": "Changelog"
   },
   "hackmd-blog": "HackMD Blog",
   "posts": "Posts"
