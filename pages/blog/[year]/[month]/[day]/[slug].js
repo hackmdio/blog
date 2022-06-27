@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NextSeo } from 'next-seo'
 import { DiscussionEmbed } from 'disqus-react'
-import useDarkMode from 'use-dark-mode'
+import { useTheme } from 'next-themes'
 import { SRLWrapper } from 'simple-react-lightbox'
 import { Trans, useTranslation } from 'react-i18next'
 import nextI18NextConfig from '../../../../../next-i18next.config'
@@ -57,13 +57,13 @@ export default function Post({
   const time = date.format()
   const { locale } = useRouter()
 
-  const darkMode = useDarkMode()
-  const [layoutDarkMode, setLayoutDarkMode] = useState(darkMode.value)
+  const { resolvedTheme } = useTheme()
+  const [layoutDarkMode, setLayoutDarkMode] = useState(resolvedTheme)
   useEffect(() => {
     window.setTimeout(() => {
-      setLayoutDarkMode(darkMode.value)
+      setLayoutDarkMode(resolvedTheme)
     }, 100)
-  }, [darkMode.value])
+  }, [resolvedTheme])
 
   const noteLink = `https://hackmd.io/s/${noteId}`
 

@@ -1,12 +1,16 @@
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import cx from 'classnames'
 
-import NightSwitch from 'components/NightSwitch'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/router'
 import { ThreeBarsIcon, XIcon } from '@primer/octicons-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useStateRef } from 'lib/hooks/useStateRef'
+
+const NightSwitch = dynamic(() => import('components/NightSwitch'), {
+  ssr: false,
+})
 
 const LanguageItems = () => {
   const { asPath } = useRouter()
@@ -208,7 +212,7 @@ const Header = () => {
       <style global>
         {`
       
-          body.dark-mode .main-navbar {
+          html[data-color-mode='dark'] .main-navbar {
             background-color: rgba(0, 0, 0, 0.75);
           }
       `}

@@ -1,6 +1,6 @@
 @use 'sass:meta';
 
-body.dark-mode {
+html[data-color-mode='dark'] {
   .markdown-body {
     h1,
     h2 {
