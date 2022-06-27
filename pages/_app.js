@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import Router from 'next/router'
 import SimpleReactLightbox from 'simple-react-lightbox'
+import { ThemeProvider } from 'next-themes'
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config'
 
 import Header from 'components/Header'
 
 import { pageview } from 'lib/gtag'
-import { usePrimerDarkMode } from 'lib/usePrimerDarkMode'
 
 import '@primer/css/index.scss'
 import 'styles/globals.scss'
@@ -23,8 +23,6 @@ Router.events.on(
 )
 
 function MyApp({ Component, pageProps, router }) {
-  usePrimerDarkMode()
-
   return (
     <>
       <Head>
@@ -49,12 +47,14 @@ function MyApp({ Component, pageProps, router }) {
           description: 'HackMD Blog',
         }}
       />
-      <SimpleReactLightbox>
-        <div className="overflow-x-hidden pt-10">
-          <Header />
-          <Component {...pageProps} key={router.route} />
-        </div>
-      </SimpleReactLightbox>
+      <ThemeProvider attribute="data-color-mode">
+        <SimpleReactLightbox>
+          <div className="overflow-x-hidden pt-10">
+            <Header />
+            <Component {...pageProps} key={router.route} />
+          </div>
+        </SimpleReactLightbox>
+      </ThemeProvider>
       <Script src="/noflash.js" strategy="beforeInteractive" />
     </>
   )
