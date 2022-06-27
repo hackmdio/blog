@@ -28,7 +28,7 @@ export default function Changelog({ content }) {
         >
           <Markdown
             content={content}
-            className="container px-3 post-container"
+            className="container px-3 post-container pb-6"
             // skippedTitle={title}
           />
         </SRLWrapper>
