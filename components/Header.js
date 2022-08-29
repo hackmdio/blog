@@ -148,6 +148,12 @@ const Header = () => {
               </a>
             </Link>
 
+            <Link href="/changelog">
+              <a className="no-underline Header-item color-fg-default h3">
+                {t('pages.changelog', 'Changelog')}
+              </a>
+            </Link>
+
             <Link href="/tags">
               <a className="no-underline Header-item color-fg-default h3">
                 {t('tags', 'Tags')}
