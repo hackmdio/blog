@@ -5,3 +5,7 @@
 This is the source code of the new HackMD Blog.
 
 The content of the blog is serving on [HackMD-Blog HackMD Team](https://hackmd.io/@hackmd-blog).
+
+## LICENSE
+
+MIT
