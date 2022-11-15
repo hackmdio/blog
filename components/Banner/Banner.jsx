@@ -1,5 +1,5 @@
 export const Banner = () => (
-  <a href="https://hackmd.io/event">
+  <a href="https://hackmd.io/event" target="_blank" rel="noopener noreferrer">
     <div className="anniversary-events-banner">
       <h3>Special for you!</h3>
       <span>Try the full power of HackMD for 30 days</span>
