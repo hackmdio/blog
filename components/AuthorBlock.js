@@ -21,7 +21,7 @@ export const AuthorBlock = ({ author }) => {
       <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
         <img
           className="circle mr-3"
-          alt="jonrohan"
+          alt={author.name}
           src={author.avatar}
           width="48"
           height="48"
