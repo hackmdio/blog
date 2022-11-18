@@ -60,6 +60,7 @@
     "shorthash": "^0.0.2",
     "simple-react-lightbox": "3.6.6",
     "slugify": "^1.4.5",
+    "swr": "^1.3.0",
     "validator": "^13.7.0",
     "yaml": "^1.10.0"
   },
