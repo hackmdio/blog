@@ -215,7 +215,7 @@ const Header = () => {
         `}
       </style>
 
-      <style global>
+      <style global="true">
         {`
       
           html[data-color-mode='dark'] .main-navbar {

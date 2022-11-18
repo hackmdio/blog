@@ -4,6 +4,7 @@ import { DiscussionEmbed } from 'disqus-react'
 import { useTheme } from 'next-themes'
 import { SRLWrapper } from 'simple-react-lightbox'
 import { Trans, useTranslation } from 'react-i18next'
+import useSWR from 'swr'
 import nextI18NextConfig from '../../../../../next-i18next.config'
 
 import Markdown from 'components/Markdown'
@@ -18,6 +19,7 @@ import { TagGroups } from 'components/TagPill'
 import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
 import AuthorBlock from 'components/AuthorBlock'
 import { renderInline } from 'lib/markdown'
+import Link from 'next/link'
 
 const HacKMDLink = () => (
   <a
@@ -40,6 +42,55 @@ const PublishedLink = ({ href }) => {
   )
 }
 
+const isProduction = process.env.NODE_ENV === 'production'
+const httpProxy = isProduction ? '' : 'http://localhost:8080/'
+
+const AnniversaryAuthorBlock = ({ username, name, description, link }) => {
+  const { data = null } = useSWR(`/profile/${username}/overview`, async () => {
+    const res = await fetch(
+      `${httpProxy}https://hackmd.io/api/${username}/overview`
+    )
+    return await res.json()
+  })
+
+  const photo = data?.user
+    ? data.user.photo
+    : data?.team
+    ? data.team.logo
+    : // base64 white jpg
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYGD4z8ABHgJ+gK1UAAAAAElFTkSuQmCC'
+
+  return (
+    <div className="container pb-5">
+      <div className="container-block color-bg-done color-border-done rounded-2 p-3 d-flex">
+        <img
+          className="circle mr-3"
+          alt={name}
+          src={photo}
+          width="48"
+          height="48"
+        />
+
+        <div className="flex flex-column flex-1">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://hackmd.io/${username}`}
+          >
+            {name}
+          </a>
+
+          {description && <div>{description}</div>}
+        </div>
+
+        <a target="_blank" rel="noopener noreferrer" href={link}>
+          <i className="fas fa-external-link-alt" />
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export default function Post({
   content,
   title,
@@ -56,6 +107,8 @@ export default function Post({
   const description = content.slice(0, 150)
   const time = date.format()
   const { locale } = useRouter()
+  const is7AnniversaryPost = tags.includes('7th-anniversary')
+  const { t } = useTranslation('common')
 
   const { resolvedTheme } = useTheme()
   const [layoutDarkMode, setLayoutDarkMode] = useState(resolvedTheme)
@@ -117,6 +170,17 @@ export default function Post({
           </div>
         )}
 
+        {is7AnniversaryPost && (
+          <div className="container px-3 pb-3">
+            <AnniversaryAuthorBlock
+              username={meta.author}
+              description={meta['author-description']}
+              name={meta.author}
+              link={meta.bylink}
+            />
+          </div>
+        )}
+
         <SRLWrapper
           options={{
             settings: {
@@ -140,13 +204,23 @@ export default function Post({
           </div>
         )}
 
-        <div className="container py-6 px-3">
-          <div className="p-3 container-block color-bg-accent color-border-accent rounded-2">
-            <Trans i18nKey="published-on-hackmd" ns="common">
-              This post is proudly <PublishedLink href={noteLink} />
-              with <HacKMDLink />
-            </Trans>
-          </div>
+        <div className="text-center my-6">
+          <Link href="/blog" passHref>
+            <a>
+              <button className="mt-3 mr-2 btn" type="button">
+                {t('read-more', 'Read more')}
+              </button>
+            </a>
+          </Link>
+        </div>
+
+        <hr className="my-0" />
+
+        <div className="container py-3 px-3 text-center">
+          <Trans i18nKey="published-on-hackmd" ns="common">
+            This post is proudly <PublishedLink href={noteLink} />
+            with <HacKMDLink />
+          </Trans>
         </div>
 
         {disqus && (

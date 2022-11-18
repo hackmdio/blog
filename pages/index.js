@@ -11,6 +11,7 @@ import nextI18NextConfig from 'next-i18next.config'
 import Signup from 'components/Signup'
 import { useRouter } from 'next/router'
 import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
+import { Banner } from 'components/Banner'
 
 export default function Home({ posts: _posts }) {
   const posts = useLocalePosts(_posts)
@@ -20,6 +21,8 @@ export default function Home({ posts: _posts }) {
   return (
     <div>
       <div className="container px-3 pt-4 pb-8 mx-auto d-block markdown-body">
+        <Banner />
+
         <h2>{t('recent', 'Recent posts')}</h2>
 
         {posts.slice(0, 5).map((post, index) => (
