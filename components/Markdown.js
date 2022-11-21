@@ -4,6 +4,7 @@ import $ from 'jquery'
 import { render } from 'lib/markdown'
 import Script from 'next/script'
 import useCopySnippet from 'lib/hooks/useCopySnippet'
+import abcjs from 'abcjs'
 
 const Markdown = ({ content, className = '', skippedTitle = '', ...props }) => {
   useCopySnippet()
@@ -76,6 +77,33 @@ const Markdown = ({ content, className = '', skippedTitle = '', ...props }) => {
         .css('border-left-color', $(value).attr('data-color'))
     })
   })
+
+  useEffect(() => {
+    const abcs = $(articleRef.current).find('span.abc.raw').removeClass('raw')
+
+    if (abcs.length === 0) {
+      return
+    }
+
+    abcs.each((key, value) => {
+      const $value = $(value)
+      const $ele = $value.parent().parent()
+
+      abcjs.renderAbc(value, $value.text())
+
+      const svg = $ele.find('svg')
+
+      if (svg.length > 0) {
+        svg[0].setAttribute(
+          'viewBox',
+          `0 0 ${svg.attr('width')} ${svg.attr('height')}`
+        )
+        svg[0].setAttribute('preserveAspectRatio', 'xMidYMid meet')
+      }
+
+      $value.unwrap().unwrap()
+    })
+  }, [articleRef])
 
   return (
     <>
