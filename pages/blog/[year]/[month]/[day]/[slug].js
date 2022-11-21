@@ -164,7 +164,7 @@ export default function Post({
           <h1 dangerouslySetInnerHTML={{ __html: renderInline(title) }} />
         </div>
 
-        {author && (
+        {!is7AnniversaryPost && author && (
           <div className="container px-3 pb-3">
             <AuthorBlock author={author} />
           </div>
