@@ -279,7 +279,7 @@ export async function getStaticPaths({ locales }) {
   /** @type {Array<any>} */
   const posts = await getAllPostsWithSlug()
 
-  const paths = locales
+  let paths = locales
     .map((locale) =>
       posts
         .map((post) => {
@@ -299,6 +299,18 @@ export async function getStaticPaths({ locales }) {
         .filter(Boolean)
     )
     .flat()
+
+  if (process.env.NODE_ENV !== 'production') {
+    paths = paths.concat({
+      locale: 'en',
+      params: {
+        year: '2015',
+        month: '03',
+        day: '14',
+        slug: 'features',
+      },
+    })
+  }
 
   return {
     paths,
