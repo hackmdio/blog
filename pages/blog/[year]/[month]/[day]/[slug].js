@@ -4,7 +4,6 @@ import { DiscussionEmbed } from 'disqus-react'
 import { useTheme } from 'next-themes'
 import { SRLWrapper } from 'simple-react-lightbox'
 import { Trans, useTranslation } from 'react-i18next'
-import useSWR from 'swr'
 import nextI18NextConfig from '../../../../../next-i18next.config'
 
 import Markdown from 'components/Markdown'
@@ -42,23 +41,17 @@ const PublishedLink = ({ href }) => {
   )
 }
 
-const isProduction = process.env.NODE_ENV === 'production'
-const httpProxy = isProduction ? '' : 'http://localhost:8080/'
-
-const AnniversaryAuthorBlock = ({ username, name, description, link }) => {
-  const { data = null } = useSWR(`/profile/${username}/overview`, async () => {
-    const res = await fetch(
-      `${httpProxy}https://hackmd.io/api/${username}/overview`
-    )
-    return await res.json()
-  })
-
-  const photo = data?.user
-    ? data.user.photo
-    : data?.team
-    ? data.team.logo
-    : // base64 white jpg
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYGD4z8ABHgJ+gK1UAAAAAElFTkSuQmCC'
+const AnniversaryAuthorBlock = ({
+  username,
+  name,
+  description,
+  link,
+  image,
+}) => {
+  const photo =
+    image ||
+    // base64 white jpg
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYGD4z8ABHgJ+gK1UAAAAAElFTkSuQmCC'
 
   return (
     <div className="container pb-5">
@@ -174,6 +167,7 @@ export default function Post({
           <div className="container px-3 pb-3">
             <AnniversaryAuthorBlock
               username={meta.author}
+              image={meta.avatar}
               description={meta['author-description']}
               name={meta.author}
               link={meta.bylink}
