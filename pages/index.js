@@ -21,8 +21,6 @@ export default function Home({ posts: _posts }) {
   return (
     <div>
       <div className="container px-3 pt-4 pb-8 mx-auto d-block markdown-body">
-        <Banner />
-
         <h2>{t('recent', 'Recent posts')}</h2>
 
         {posts.slice(0, 5).map((post, index) => (
