@@ -3,37 +3,15 @@ import dynamic from 'next/dynamic'
 import cx from 'classnames'
 
 import { useTranslation } from 'react-i18next'
-import { useRouter } from 'next/router'
 import { ThreeBarsIcon, XIcon } from '@primer/octicons-react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useStateRef } from 'lib/hooks/useStateRef'
 
 const NightSwitch = dynamic(() => import('components/NightSwitch'), {
   ssr: false,
 })
 
-const LanguageItems = () => {
-  const { asPath } = useRouter()
-
-  return (
-    <>
-      <Link href={asPath} locale="en">
-        <a className="no-underline Header-item color-fg-default">English</a>
-      </Link>
-
-      <Link href={asPath} locale="zh">
-        <a className="no-underline Header-item color-fg-default">中文</a>
-      </Link>
-
-      <Link href={asPath} locale="ja">
-        <a className="no-underline Header-item color-fg-default">日本語</a>
-      </Link>
-    </>
-  )
-}
-
 const Header = () => {
-  const { asPath } = useRouter()
   const { t } = useTranslation('common')
 
   const [sidebarOpen, setSidebarOpen, sidebarOpenRef] = useStateRef(false)
@@ -104,19 +82,19 @@ const Header = () => {
         </div>
 
         <div className="d-flex flex-items-center">
-          <Link href={asPath} locale="en">
+          <Link href="/" locale="en">
             <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
               English
             </a>
           </Link>
 
-          <Link href={asPath} locale="zh">
+          <Link href="/" locale="zh">
             <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
               中文
             </a>
           </Link>
 
-          <Link href={asPath} locale="ja">
+          <Link href="/" locale="ja">
             <a className="no-underline Header-item color-fg-default d-none d-sm-flex">
               日本語
             </a>
@@ -160,17 +138,17 @@ const Header = () => {
               </a>
             </Link>
 
-            <Link href={asPath} locale="en">
+            <Link href="/" locale="en">
               <a className="no-underline Header-item color-fg-default">
                 English
               </a>
             </Link>
 
-            <Link href={asPath} locale="zh">
+            <Link href="/" locale="zh">
               <a className="no-underline Header-item color-fg-default">中文</a>
             </Link>
 
-            <Link href={asPath} locale="ja">
+            <Link href="/" locale="ja">
               <a className="no-underline Header-item color-fg-default">
                 日本語
               </a>
@@ -184,11 +162,9 @@ const Header = () => {
       <style jsx scoped>
         {`
           .sidebar {
-            transform: translateX(300px);
             transition: transform 0.2s ease-in-out;
           }
 
-          .sidebar.sidebar-open {
             transform: translateX(0);
           }
 
