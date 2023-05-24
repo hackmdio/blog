@@ -84,6 +84,8 @@ const AnniversaryAuthorBlock = ({
   )
 }
 
+const defaultDomain = process.env.NEXT_PUBLIC_DOMAIN || 'blog.hackmd.io'
+
 export default function Post({
   content,
   title,
@@ -96,7 +98,7 @@ export default function Post({
 }) {
   const { year, month, day, slug } = params
   const date = dayjs(`${year}-${month}-${day}`)
-  const url = `https://${process.env.NEXT_PUBLIC_DOMAIN}/blog/${year}/${month}/${day}/${slug}`
+  const url = `https://${defaultDomain}/blog/${year}/${month}/${day}/${slug}`
   const description = content.slice(0, 150)
   const time = date.format()
   const { locale } = useRouter()
