@@ -17,6 +17,11 @@ const Header = () => {
   const [sidebarOpen, setSidebarOpen, sidebarOpenRef] = useStateRef(false)
   const toggleSidebar = useCallback(() => setSidebarOpen((open) => !open), [])
   const closeSidebar = useCallback(() => setSidebarOpen(false), [])
+
+  /**
+   * Ref object for sidebar element
+   * @type {React.RefObject<HTMLDivElement>}
+   */
   const sidebarRef = useRef()
   const clickOutside = useCallback((e) => {
     if (
@@ -32,7 +37,7 @@ const Header = () => {
     document.addEventListener('click', clickOutside)
 
     return () => document.removeEventListener('click', clickOutside)
-  }, [])
+  }, [clickOutside])
 
   return (
     <div
@@ -115,9 +120,13 @@ const Header = () => {
           style={{ width: 300, height: '100vh', overflow: 'hidden' }}
           ref={sidebarRef}
         >
-          <div style={{ cursor: 'pointer' }} onClick={closeSidebar}>
-            <XIcon size={24} className="right-3 top-4 position-absolute" />
-          </div>
+          <span
+            style={{ cursor: 'pointer', display: 'inline-block' }}
+            onClick={closeSidebar}
+            className="right-3 top-4 position-absolute"
+          >
+            <XIcon size={24} />
+          </span>
 
           <div className="px-5 pt-8 d-flex flex-column flex-justify-center">
             <Link href="/blog">
@@ -163,8 +172,10 @@ const Header = () => {
         {`
           .sidebar {
             transition: transform 0.2s ease-in-out;
+            transform: translateX(100%);
           }
 
+          .sidebar.sidebar-open {
             transform: translateX(0);
           }
 
