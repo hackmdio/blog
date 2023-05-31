@@ -15,7 +15,10 @@ import { showInAllLocale, showInLocale } from 'lib/locale'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { TagGroups } from 'components/TagPill'
-import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
+import {
+  SubscriptionFrameZh,
+  SubscriptionFrameEn,
+} from 'components/SubscriptionFrame'
 import AuthorBlock from 'components/AuthorBlock'
 import { renderInline } from 'lib/markdown'
 import Link from 'next/link'
@@ -196,7 +199,11 @@ export default function Post({
 
         {!meta.subscription && (
           <div className="mt-8">
-            {locale === 'zh' ? <SubscriptionFrameZh /> : null}
+            {locale === 'zh' ? (
+              <SubscriptionFrameZh />
+            ) : (
+              <SubscriptionFrameEn />
+            )}
           </div>
         )}
 

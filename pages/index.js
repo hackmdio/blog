@@ -10,8 +10,11 @@ import { useTranslation } from 'next-i18next'
 import nextI18NextConfig from 'next-i18next.config'
 import Signup from 'components/Signup'
 import { useRouter } from 'next/router'
-import { SubscriptionFrameZh } from 'components/SubscriptionFrame'
-import { Banner } from 'components/Banner'
+import {
+  SubscriptionFrameZh,
+  SubscriptionFrameEn,
+} from 'components/SubscriptionFrame'
+// import { Banner } from 'components/Banner'
 
 export default function Home({ posts: _posts }) {
   const posts = useLocalePosts(_posts)
@@ -45,7 +48,7 @@ export default function Home({ posts: _posts }) {
       <Signup />
 
       <div className="mt-6">
-        {locale === 'zh' ? <SubscriptionFrameZh /> : null}
+        {locale === 'zh' ? <SubscriptionFrameZh /> : <SubscriptionFrameEn />}
       </div>
     </div>
   )
