@@ -12,3 +12,18 @@ export const SubscriptionFrameZh = () => (
     }}
   ></iframe>
 )
+
+export const SubscriptionFrameEn = () => (
+  <iframe
+    className="airtable-embed container"
+    src="https://airtable.com/embed/shrJ8pBw5wuzog5wG?backgroundColor=red&prefill_Source=Blog"
+    frameBorder="0"
+    width="100%"
+    height={800}
+    style={{
+      background: 'transparent',
+      border: 0,
+      overflow: 'hidden',
+    }}
+  ></iframe>
+)
