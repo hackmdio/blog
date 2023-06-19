@@ -1,8 +1,20 @@
 import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/router'
+import { useCallback } from 'react'
 
 const Footer = () => {
   const { t } = useTranslation('common')
   const year = new Date().getFullYear()
+  const router = useRouter()
+
+  const onLocaleChange = useCallback(
+    (e) => {
+      const locale = e.target.value
+      console.log('locale', locale)
+      router.push('/', '/', { locale })
+    },
+    [router]
+  )
 
   return (
     <>
@@ -20,15 +32,18 @@ const Footer = () => {
           .text-gray-lighter { color: #95989A; }
           .w-100 { width: 100%; }
           .pr-1 { padding-right: 4px; }
-          .justify-start-xs { justify-content: flex-start; }
-          .justify-end-sm { justify-content: flex-end; }
-          .justify-between { justify-content: space-between; }
-          .flex-row-sm { flex-direction: row; }
-          .flex-column-xs { flex-direction: column; }
-          .items-start-xs { align-items: flex-start; }
-          .items-center-sm { align-items: center; }
-          .items-center { align-items: center; }
+
           .flex { display: flex; }
+          .flex-column-xs { flex-direction: column; }
+          .justify-start-xs { justify-content: flex-start; }
+          .items-start-xs { align-items: flex-start; }
+          .items-center { align-items: center; }
+          
+          @media (min-width: 576px) {
+              .justify-end-sm { justify-content: flex-end; }
+              .items-center-sm { align-items: center; }
+              .flex-row-sm { flex-direction: row; }
+          }
 
           .col-sm-6, .col-md-3 {
             float: left;
@@ -41,12 +56,17 @@ const Footer = () => {
             .col-md-3 { flex: 0 0 auto; width: 25%; }
           }
           .list-unstyled { padding-left: 0; list-style: none; }
-          .col-xs-12 { flex-basis: 100%; max-width: 100%; }
+          .col-xs-12 { flex-basis: 100%; width: 100%; }
           @media (min-width: 576px) {
-            .col-sm-6 { flex-basis: 50%; max-width: 50%; }
+            .col-sm-6 { flex-basis: 50%; width: 50%; }
           }
           @media (min-width: 768px) {
-            .col-md-3 { flex-basis: 25%; max-width: 25%; }
+            .col-md-3 { flex-basis: 25%; width: 25%; }
+          }
+
+          a:hover { 
+            text-decoration: none; 
+            opacity: 0.8;
           }
       `}</style>
       <footer className="text-left pv-4">
@@ -201,7 +221,7 @@ const Footer = () => {
 
               <hr className="w-100" />
 
-              <div className="row flex justify-between">
+              <div className="flex justify-between row ph-2">
                 <div className="flex items-center col-xs-12 col-sm-6">
                   <span className="pr-1 ui-brand">
                     &copy; {year} HackMD. All Rights Reserved.
@@ -209,7 +229,11 @@ const Footer = () => {
                 </div>
 
                 <div className="flex col-xs-12 col-sm-6 justify-start-xs justify-end-sm flex-row-sm flex-column-xs items-start-xs items-center-sm">
-                  <select title="Language" className="ui-locale">
+                  <select
+                    title="Language"
+                    className="ui-locale"
+                    onChange={onLocaleChange}
+                  >
                     <option value="en">English</option>
                     <option value="zh">中文</option>
                     <option value="ja">日本語</option>
