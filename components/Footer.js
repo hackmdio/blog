@@ -18,56 +18,122 @@ const Footer = () => {
 
   return (
     <>
-      <style>{`
-          .text-left { text-align: left; }
-          .pv-4 { padding-top: 16px; padding-bottom: 16px; }
-          .container-thin { max-width: 720px; margin-right: auto; margin-left: auto; }
-          .mb-1 { margin-bottom: 4px; }
-          .ph-2 { padding-left: 8px; padding-right: 8px; }
-          .mb-3 { margin-bottom: 12px; }
-          .mb-0-md { margin-bottom: 0; }
-          .mt-0 { margin-top: 0; }
-          .pb-1-4 { padding-bottom: 2px; }
-          .pv-1-4 { padding-top: 2px; padding-bottom: 2px; }
-          .text-gray-lighter { color: #95989A; }
-          .w-100 { width: 100%; }
-          .pr-1 { padding-right: 4px; }
+      <style jsx>{`
+        .text-left {
+          text-align: left;
+        }
+        .pv-4 {
+          padding-top: 16px;
+          padding-bottom: 16px;
+        }
+        .container-thin {
+          max-width: 720px;
+          margin-right: auto;
+          margin-left: auto;
+        }
+        .mb-1 {
+          margin-bottom: 4px;
+        }
+        .ph-2 {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+        .mb-3 {
+          margin-bottom: 12px;
+        }
+        .mb-0-md {
+          margin-bottom: 0;
+        }
+        .mt-0 {
+          margin-top: 0;
+        }
+        .pb-1-4 {
+          padding-bottom: 2px;
+        }
+        .pv-1-4 {
+          padding-top: 2px;
+          padding-bottom: 2px;
+        }
+        .text-gray-lighter {
+          color: #95989a;
+        }
+        .w-100 {
+          width: 100%;
+        }
+        .pr-1 {
+          padding-right: 4px;
+        }
 
-          .flex { display: flex; }
-          .flex-column-xs { flex-direction: column; }
-          .justify-start-xs { justify-content: flex-start; }
-          .items-start-xs { align-items: flex-start; }
-          .items-center { align-items: center; }
-          
-          @media (min-width: 576px) {
-              .justify-end-sm { justify-content: flex-end; }
-              .items-center-sm { align-items: center; }
-              .flex-row-sm { flex-direction: row; }
-          }
+        .flex {
+          display: flex;
+        }
+        .flex-column-xs {
+          flex-direction: column;
+        }
+        .justify-start-xs {
+          justify-content: flex-start;
+        }
+        .items-start-xs {
+          align-items: flex-start;
+        }
+        .items-center {
+          align-items: center;
+        }
 
-          .col-sm-6, .col-md-3 {
-            float: left;
+        @media (min-width: 576px) {
+          .justify-end-sm {
+            justify-content: flex-end;
           }
+          .items-center-sm {
+            align-items: center;
+          }
+          .flex-row-sm {
+            flex-direction: row;
+          }
+        }
 
-          @media (min-width: 768px) {
-            .col-sm-6 { flex: 0 0 auto; width: 50%; }
-          }
-          @media (min-width: 992px) {
-            .col-md-3 { flex: 0 0 auto; width: 25%; }
-          }
-          .list-unstyled { padding-left: 0; list-style: none; }
-          .col-xs-12 { flex-basis: 100%; width: 100%; }
-          @media (min-width: 576px) {
-            .col-sm-6 { flex-basis: 50%; width: 50%; }
-          }
-          @media (min-width: 768px) {
-            .col-md-3 { flex-basis: 25%; width: 25%; }
-          }
+        .col-sm-6,
+        .col-md-3 {
+          float: left;
+        }
 
-          a:hover { 
-            text-decoration: none; 
-            opacity: 0.8;
+        @media (min-width: 768px) {
+          .col-sm-6 {
+            flex: 0 0 auto;
+            width: 50%;
           }
+        }
+        @media (min-width: 992px) {
+          .col-md-3 {
+            flex: 0 0 auto;
+            width: 25%;
+          }
+        }
+        .list-unstyled {
+          padding-left: 0;
+          list-style: none;
+        }
+        .col-xs-12 {
+          flex-basis: 100%;
+          width: 100%;
+        }
+        @media (min-width: 576px) {
+          .col-sm-6 {
+            flex-basis: 50%;
+            width: 50%;
+          }
+        }
+        @media (min-width: 768px) {
+          .col-md-3 {
+            flex-basis: 25%;
+            width: 25%;
+          }
+        }
+
+        a:hover {
+          text-decoration: none;
+          opacity: 0.8;
+        }
       `}</style>
       <footer className="text-left pv-4">
         <div className="container-thin">
