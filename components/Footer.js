@@ -135,7 +135,12 @@ const Footer = () => {
           opacity: 0.8;
         }
       `}</style>
-      <footer className="text-left pv-4">
+      <footer
+        className="text-left pv-4"
+        style={{
+          borderTop: '1px solid var(--color-border-default)',
+        }}
+      >
         <div className="container-thin">
           <div className="row">
             <div className="col-xs-12">
