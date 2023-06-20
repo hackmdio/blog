@@ -13,5 +13,32 @@
     "changelog": "Changelog"
   },
   "hackmd-blog": "HackMD Blog",
-  "posts": "Posts"
+  "posts": "Posts",
+  "footer": {
+    "product": "Product",
+    "enterprise": "Enterprise",
+    "templates": "Templates",
+    "open-source": "Open Source",
+    "resources": "Resources",
+    "features": "Features",
+    "features-link": "https://hackmd.io/c/tutorials/%2Fs%2Ffeatures",
+    "tutorial": "Tutorial",
+    "tutorials-book": "Tutorials Book",
+    "faq": "Frequently asked questions",
+    "information": "Information",
+    "about": "About",
+    "blog": "Blog",
+    "company": "Company",
+    "privacy": "Privacy",
+    "pricing": "Pricing",
+    "policy": "Policy",
+    "tos": "Terms of Service",
+    "releases": "Releases",
+    "about-ee": "About {{name}}",
+    "about-hackmd": "About HackMD",
+    "coffee": "Buy us coffee",
+    "terms": "Terms",
+    "contact-us": "Contact us",
+    "donate": "BUY US COFFEE"
+  }
 }
