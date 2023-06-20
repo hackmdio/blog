@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
-const Footer = () => {
+const Footer = ({ showSeperator = false }) => {
   const { t } = useTranslation('common')
   const year = new Date().getFullYear()
   const router = useRouter()
@@ -139,7 +139,10 @@ const Footer = () => {
       <footer
         className="text-left pv-4"
         style={{
-          borderTop: '1px solid var(--color-border-default)',
+          borderTop: showSeperator
+            ? '1px solid var(--color-border-default)'
+            : '',
+          marginTop: '32px',
         }}
       >
         <div className="container-thin">

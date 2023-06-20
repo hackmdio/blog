@@ -52,7 +52,7 @@ export default function Home({ posts: _posts }) {
         {locale === 'zh' ? <SubscriptionFrameZh /> : <SubscriptionFrameEn />}
       </div>
 
-      <Footer />
+      <Footer showSeperator />
     </div>
   )
 }

@@ -32,7 +32,7 @@ export default function Blog({ posts: _posts }) {
           </a>
         </div>
       </article>
-      <Footer />
+      <Footer showSeperator />
     </>
   )
 }

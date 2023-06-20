@@ -35,7 +35,7 @@ export default function Changelog({ content }) {
         </SRLWrapper>
       </div>
 
-      <Footer />
+      <Footer showSeperator />
     </div>
   )
 }

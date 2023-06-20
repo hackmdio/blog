@@ -28,7 +28,7 @@ const Tags = ({ tags }) => {
         </div>
       </div>
 
-      <Footer />
+      <Footer showSeperator />
     </div>
   )
 }
