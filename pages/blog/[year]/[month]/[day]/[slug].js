@@ -22,6 +22,7 @@ import {
 import AuthorBlock from 'components/AuthorBlock'
 import { renderInline } from 'lib/markdown'
 import Link from 'next/link'
+import Footer from 'components/Footer'
 
 const HacKMDLink = () => (
   <a
@@ -119,129 +120,134 @@ export default function Post({
   const noteLink = `https://hackmd.io/s/${noteId}`
 
   return (
-    <section>
-      <NextSeo
-        title={title}
-        description={description}
-        openGraph={{
-          type: 'article',
-          locale: locale === 'zh' ? 'zh-Hant-TW' : locale,
-          url,
-          title,
-          description,
-          site_name: 'HackMD Blog',
-          article: {
-            publishedTime: time,
-            modifiedTime: time,
-          },
-          images: [
-            meta?.image && {
-              url: meta?.image,
-              alt: title,
+    <>
+      <section>
+        <NextSeo
+          title={title}
+          description={description}
+          openGraph={{
+            type: 'article',
+            locale: locale === 'zh' ? 'zh-Hant-TW' : locale,
+            url,
+            title,
+            description,
+            site_name: 'HackMD Blog',
+            article: {
+              publishedTime: time,
+              modifiedTime: time,
             },
-          ].filter(Boolean),
-        }}
-      />
-
-      <div>
-        {meta?.image && (
-          <div className="container px-3 pt-4 pb-1">
-            <img
-              src={meta?.image}
-              style={{ maxWidth: '100%', borderRadius: 6 }}
-            />
-          </div>
-        )}
-        <div className="container px-3 pt-4 pb-3">
-          <span className="text-mono color-fg-muted">{date.format('LL')}</span>
-
-          <TagGroups tags={tags} className="mt-3" />
-        </div>
-
-        <div className="container px-3 pb-3">
-          <h1 dangerouslySetInnerHTML={{ __html: renderInline(title) }} />
-        </div>
-
-        {!is7AnniversaryPost && author && (
-          <div className="container px-3 pb-3">
-            <AuthorBlock author={author} />
-          </div>
-        )}
-
-        {is7AnniversaryPost && (
-          <div className="container px-3 pb-3">
-            <AnniversaryAuthorBlock
-              username={meta.author}
-              image={meta.avatar}
-              description={meta['author-description']}
-              name={meta.author}
-              link={meta.bylink}
-            />
-          </div>
-        )}
-
-        <SRLWrapper
-          options={{
-            settings: {
-              lightboxTransitionSpeed: 0.1,
-              slideAnimationType: 'both',
-              slideSpringValues: [350, 50],
-              slideTransitionTimingFunction: 'easeInOut',
-            },
+            images: [
+              meta?.image && {
+                url: meta?.image,
+                alt: title,
+              },
+            ].filter(Boolean),
           }}
-        >
-          <Markdown
-            content={content}
-            className="container px-3 post-container"
-            skippedTitle={title}
-          />
-        </SRLWrapper>
+        />
 
-        {!meta.subscription && (
-          <div className="mt-8">
-            {locale === 'zh' ? (
-              <SubscriptionFrameZh />
-            ) : (
-              <SubscriptionFrameEn />
-            )}
+        <div>
+          {meta?.image && (
+            <div className="container px-3 pt-4 pb-1">
+              <img
+                src={meta?.image}
+                style={{ maxWidth: '100%', borderRadius: 6 }}
+              />
+            </div>
+          )}
+          <div className="container px-3 pt-4 pb-3">
+            <span className="text-mono color-fg-muted">
+              {date.format('LL')}
+            </span>
+
+            <TagGroups tags={tags} className="mt-3" />
           </div>
-        )}
 
-        <div className="text-center my-6">
-          <Link href="/blog" passHref>
-            <a>
-              <button className="mt-3 mr-2 btn" type="button">
-                {t('read-more', 'Read more')}
-              </button>
-            </a>
-          </Link>
-        </div>
+          <div className="container px-3 pb-3">
+            <h1 dangerouslySetInnerHTML={{ __html: renderInline(title) }} />
+          </div>
 
-        <hr className="my-0" />
+          {!is7AnniversaryPost && author && (
+            <div className="container px-3 pb-3">
+              <AuthorBlock author={author} />
+            </div>
+          )}
 
-        <div className="container py-3 px-3 text-center">
-          <Trans i18nKey="published-on-hackmd" ns="common">
-            This post is proudly <PublishedLink href={noteLink} />
-            with <HacKMDLink />
-          </Trans>
-        </div>
+          {is7AnniversaryPost && (
+            <div className="container px-3 pb-3">
+              <AnniversaryAuthorBlock
+                username={meta.author}
+                image={meta.avatar}
+                description={meta['author-description']}
+                name={meta.author}
+                link={meta.bylink}
+              />
+            </div>
+          )}
 
-        {disqus && (
-          <div className="container px-3 py-3">
-            <DiscussionEmbed
-              shortname={disqus.shortname}
-              config={{
-                url: url,
-                identifier: url,
-                title: title,
-                language: 'zh_TW',
-              }}
-              darkmode={JSON.stringify(layoutDarkMode)}
+          <SRLWrapper
+            options={{
+              settings: {
+                lightboxTransitionSpeed: 0.1,
+                slideAnimationType: 'both',
+                slideSpringValues: [350, 50],
+                slideTransitionTimingFunction: 'easeInOut',
+              },
+            }}
+          >
+            <Markdown
+              content={content}
+              className="container px-3 post-container"
+              skippedTitle={title}
             />
+          </SRLWrapper>
+
+          {!meta.subscription && (
+            <div className="mt-8">
+              {locale === 'zh' ? (
+                <SubscriptionFrameZh />
+              ) : (
+                <SubscriptionFrameEn />
+              )}
+            </div>
+          )}
+
+          <div className="text-center my-6">
+            <Link href="/blog" passHref>
+              <a>
+                <button className="mt-3 mr-2 btn" type="button">
+                  {t('read-more', 'Read more')}
+                </button>
+              </a>
+            </Link>
           </div>
-        )}
-      </div>
-    </section>
+
+          <hr className="my-0" />
+
+          {/* <div className="container py-3 px-3 text-center"> */}
+          {/*   <Trans i18nKey="published-on-hackmd" ns="common"> */}
+          {/*     This post is proudly <PublishedLink href={noteLink} /> */}
+          {/*     with <HacKMDLink /> */}
+          {/*   </Trans> */}
+          {/* </div> */}
+
+          {disqus && (
+            <div className="container px-3 py-3">
+              <DiscussionEmbed
+                shortname={disqus.shortname}
+                config={{
+                  url: url,
+                  identifier: url,
+                  title: title,
+                  language: 'zh_TW',
+                }}
+                darkmode={JSON.stringify(layoutDarkMode)}
+              />
+            </div>
+          )}
+        </div>
+      </section>
+      <Footer />
+    </>
   )
 }
 

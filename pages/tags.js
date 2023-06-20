@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'react-i18next'
 import { NextSeo } from 'next-seo'
 import TagPill from 'components/TagPill'
+import Footer from 'components/Footer'
 
 const Tags = ({ tags }) => {
   const { t } = useTranslation('common')
@@ -26,6 +27,8 @@ const Tags = ({ tags }) => {
           <TagPill tag={t('empty', 'No tag')} href="/tags/empty" />
         </div>
       </div>
+
+      <Footer showSeperator />
     </div>
   )
 }

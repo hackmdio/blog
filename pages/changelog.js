@@ -7,6 +7,7 @@ import got from 'got'
 import nextI18NextConfig from 'next-i18next.config'
 import { useTranslation } from 'react-i18next'
 import { NextSeo } from 'next-seo'
+import Footer from 'components/Footer'
 
 export default function Changelog({ content }) {
   const { t } = useTranslation('common')
@@ -33,6 +34,8 @@ export default function Changelog({ content }) {
           />
         </SRLWrapper>
       </div>
+
+      <Footer showSeperator />
     </div>
   )
 }
