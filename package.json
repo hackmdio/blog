@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.15.3",
+    "@fortawesome/fontawesome-free": "5.15.4",
     "@next/bundle-analyzer": "^10.2.0",
     "@primer/css": "18.0.1",
     "@primer/octicons-react": "16.0.0",

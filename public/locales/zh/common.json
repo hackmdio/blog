@@ -18,5 +18,32 @@
   },
   "hackmd-blog": "HackMD 部落格",
   "posts": "所有文章",
-  "getting-started-with-hackmd": "立刻開始使用 HackMD"
+  "getting-started-with-hackmd": "立刻開始使用 HackMD",
+  "footer": {
+    "product": "產品",
+    "enterprise": "企業方案",
+    "templates": "試用範本",
+    "open-source": "開源版本",
+    "resources": "資源",
+    "features": "快速入門",
+    "features-link": "https://hackmd.io/c/tutorials-tw/%2Fs%2Fquick-start-tw",
+    "tutorial": "使用教學",
+    "tutorials-book": "教學手冊",
+    "faq": "常見問題",
+    "information": "資訊",
+    "about": "關於我們",
+    "blog": "部落格",
+    "company": "企業",
+    "privacy": "隱私權政策",
+    "pricing": "收費方案",
+    "policy": "政策",
+    "tos": "服務條款",
+    "releases": "版本記錄",
+    "coffee": "捐贈我們一杯咖啡",
+    "about-hackmd": "關於 HackMD",
+    "about-ee": "關於 {{name}}",
+    "terms": "條款",
+    "contact-us": "聯絡我們",
+    "donate": "捐贈我們一杯咖啡"
+  }
 }

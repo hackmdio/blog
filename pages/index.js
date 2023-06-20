@@ -15,6 +15,7 @@ import {
   SubscriptionFrameEn,
 } from 'components/SubscriptionFrame'
 // import { Banner } from 'components/Banner'
+import Footer from 'components/Footer'
 
 export default function Home({ posts: _posts }) {
   const posts = useLocalePosts(_posts)
@@ -50,6 +51,8 @@ export default function Home({ posts: _posts }) {
       <div className="mt-6">
         {locale === 'zh' ? <SubscriptionFrameZh /> : <SubscriptionFrameEn />}
       </div>
+
+      <Footer showSeperator />
     </div>
   )
 }

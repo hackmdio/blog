@@ -1,4 +1,30 @@
 {
   "hi": "ようこそ",
-  "language": "言語"
+  "language": "言語",
+  "footer": {
+    "product": "サービス",
+    "enterprise": "企業向け",
+    "templates": "テンプレートを試用",
+    "open-source": "オープンソース版",
+    "resources": "リソース",
+    "features": "クイックスタート",
+    "tutorial": "使い方",
+    "tutorials-book": "説明書",
+    "faq": "よくあるご質問",
+    "information": "情報",
+    "about": "開発者について",
+    "blog": "ブログ",
+    "company": "企業",
+    "privacy": "プライバシーポリシー",
+    "pricing": "料金プラン",
+    "policy": "パリシー",
+    "tos": "利用規約",
+    "releases": "更新履歴",
+    "coffee": "開発者にコーヒーを寄贈します",
+    "about-hackmd": "HackMDについて",
+    "about-ee": "{{name}}について",
+    "terms": "利用規約",
+    "contact-us": "私たちに連絡",
+    "donate": "開発者にコーヒーを寄付します"
+  }
 }
