@@ -6,6 +6,7 @@ const Footer = () => {
   const { t } = useTranslation('common')
   const year = new Date().getFullYear()
   const router = useRouter()
+  const { locale } = router
 
   const onLocaleChange = useCallback(
     (e) => {
@@ -304,6 +305,7 @@ const Footer = () => {
                     title="Language"
                     className="ui-locale"
                     onChange={onLocaleChange}
+                    defaultValue={locale}
                   >
                     <option value="en">English</option>
                     <option value="zh">中文</option>
