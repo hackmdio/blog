@@ -22,6 +22,16 @@ export default function PostRow({ post, showAuthor = true }) {
 
   return (
     <div className="p-4 mb-8 border d-flex flex-items-start flex-column rounded-1 color-border-default">
+      {meta?.image && (
+        <div className="pb-4">
+          <img
+            src={meta?.image}
+            style={{ maxWidth: '100%', borderRadius: 6 }}
+            alt="cover image"
+          />
+        </div>
+      )}
+
       <div className="mb-2 text-mono color-fg-muted f5">
         {date.format('LL')}
       </div>
