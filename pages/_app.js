@@ -27,7 +27,7 @@ const tagManagerArgs = {
   gtmId: process.env.NEXT_PUBLIC_GTM_ID,
 }
 
-if (tagManagerArgs.gtmId) {
+if (tagManagerArgs.gtmId && typeof window !== 'undefined') {
   TagManager.initialize(tagManagerArgs)
 }
 
