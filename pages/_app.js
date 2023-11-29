@@ -3,6 +3,7 @@ import Router from 'next/router'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { ThemeProvider } from 'next-themes'
 import { appWithTranslation } from 'next-i18next'
+import TagManager from 'react-gtm-module'
 import nextI18NextConfig from '../next-i18next.config'
 
 import Header from 'components/Header'
@@ -21,6 +22,14 @@ Router.events.on(
   'routeChangeComplete',
   (url) => process.env.NODE_ENV === 'production' && pageview(url)
 )
+
+const tagManagerArgs = {
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID,
+}
+
+if (tagManagerArgs.gtmId) {
+  TagManager.initialize(tagManagerArgs)
+}
 
 function MyApp({ Component, pageProps, router }) {
   return (
