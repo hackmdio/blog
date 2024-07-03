@@ -149,6 +149,7 @@ export default function Post({
           {meta?.image && (
             <div className="container px-3 pt-4 pb-1">
               <img
+                alt="Cover image"
                 src={meta?.image}
                 style={{ maxWidth: '100%', borderRadius: 6 }}
               />
